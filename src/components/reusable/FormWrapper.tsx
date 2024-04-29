@@ -1,5 +1,6 @@
 import React, { ReactNode } from 'react';
 import * as Styled from '../../styles/styles';
+import { useNavigate } from 'react-router-dom';
 
 interface FormWrapperInterface {
 	formTitle: string;
@@ -18,6 +19,8 @@ export const FormWrapper = ({
 	buttonLoading,
 	handleSubmit,
 }: FormWrapperInterface) => {
+	const navigate = useNavigate();
+
 	return (
 		<Styled.FormContainer>
 			<h1>{formTitle}</h1>
@@ -25,6 +28,9 @@ export const FormWrapper = ({
 				{children}
 				<button type="submit" disabled={isLoading}>
 					{isLoading ? `${buttonLoading}` : `${buttonLabel}`}
+				</button>
+				<button type="button" onClick={() => navigate('/blog')}>
+					Back
 				</button>
 			</Styled.Form>
 		</Styled.FormContainer>

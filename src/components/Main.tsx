@@ -5,6 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { useGetTokenMutation } from '../store/rtk/authApi';
 import { setCredentials } from '../store/rtk/authSlice';
 import * as AuthInterface from '../interfaces/Auth.interfaces';
+import { FormWrapper } from './reusable/FormWrapper';
+import { InputForm } from './reusable/InputForm';
+import { handleInputChange } from './utils';
 //import { useDispatch } from 'react-redux';
 //import { useNavigate } from 'react-router-dom';
 
@@ -17,12 +20,6 @@ export const Main = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
-	const handleChange = ({
-		target: { name, value },
-	}: React.ChangeEvent<HTMLInputElement>) => {
-		setFormState((prev) => ({ ...prev, [name]: value }));
-	};
-
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		const user = await login(formState).unwrap();
@@ -32,34 +29,33 @@ export const Main = () => {
 
 	return (
 		<>
-			<h1>Login to BlogApp</h1>
-			<form
-				onSubmit={(e) => {
-					handleSubmit(e);
-				}}
+			<FormWrapper
+				formTitle="Login to BlogApp"
+				isLoading={isLoading}
+				buttonLabel="Login"
+				buttonLoading="Logging in..."
+				handleSubmit={handleSubmit}
 			>
-				<label htmlFor="email">Email</label>
-				<input
-					type="email"
+				<InputForm
+					label="Email"
 					name="email"
-					id="email"
+					type="text"
 					placeholder="admin@mail.com"
-					onChange={handleChange}
+					defaultValue={formState?.email}
+					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
-				<label htmlFor="password">Password</label>
-				<input
-					type="password"
+				<InputForm
+					label="Password"
 					name="password"
-					id="password"
-					onChange={handleChange}
+					type="password"
+					placeholder="Enter password"
+					defaultValue={formState?.email}
+					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
-				<button type="submit" disabled={isLoading}>
-					{isLoading ? 'Logging in...' : 'Log in'}
-				</button>
-				<button type="button" onClick={() => navigate('/signup')}>
-					Sign Up
-				</button>
-			</form>
+			</FormWrapper>
+			<button type="button" onClick={() => navigate('/signup')}>
+				Sign Up
+			</button>
 		</>
 	);
 };

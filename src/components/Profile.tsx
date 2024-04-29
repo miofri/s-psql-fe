@@ -50,6 +50,9 @@ export const Profile = () => {
 					<button type="submit" disabled={isLoading}>
 						Submit
 					</button>
+					<button type="button" onClick={() => navigate('/blog')}>
+						Back
+					</button>
 				</form>
 			) : (
 				<></>

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 import { RootState } from '../store/store';
 import { useDeleteBlogMutation, useGetBlogsQuery } from '../store/rtk/blogApi';
+import * as Styled from '../styles/styles';
 
 export const BlogPosts = () => {
 	const navigate = useNavigate();
@@ -42,12 +43,17 @@ export const BlogPosts = () => {
 			<div>
 				<div>
 					<h1>Welcome, {user.user.email}</h1>
-					<button type="button" onClick={() => navigate('/profile')}>
-						Profile
-					</button>
+					<Styled.NavButtons role="navigation">
+						<button type="button" onClick={() => navigate('/profile')}>
+							Profile
+						</button>
+						<button type="button" onClick={handleNewPost}>
+							Create new blog post
+						</button>
+					</Styled.NavButtons>
 				</div>
 				{data?.map((post) => (
-					<article key={post.id}>
+					<Styled.Article key={post.id}>
 						<h2>{post.title}</h2>
 						<p>{post.body}</p>
 						<button
@@ -62,11 +68,8 @@ export const BlogPosts = () => {
 						>
 							Delete
 						</button>
-					</article>
+					</Styled.Article>
 				))}
-				<button type="button" onClick={handleNewPost}>
-					Create new blog post
-				</button>
 			</div>
 		);
 	}
