@@ -1,18 +1,20 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { Credentials } from './authApi';
 
-export interface AuthState {
-	user: string | undefined;
-	token: string | undefined;
-}
-const initialState: AuthState = { user: undefined, token: undefined };
+const initialState: Credentials = {
+	user: { email: '', user_id: 0 },
+	token: '',
+};
 
 export const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setCredentials: (state, action: PayloadAction<AuthState>) => {
+		setCredentials: (state, action: PayloadAction<Credentials>) => {
 			state.user = action.payload.user;
 			state.token = action.payload.token;
 		},
 	},
 });
+
+export const { setCredentials } = authSlice.actions;

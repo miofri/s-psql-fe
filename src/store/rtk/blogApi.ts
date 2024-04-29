@@ -44,14 +44,17 @@ export const blogApi = createApi({
 				body,
 			}),
 		}),
-		deleteBlog: builder.mutation<number, { blog_id: number }>({
+		deleteBlog: builder.mutation<number, { post_id: number }>({
 			query: (body) => ({
 				url: `/post`,
 				method: 'DELETE',
 				body,
 			}),
 		}),
-		patchBlog: builder.mutation<number, { blog_id: number }>({
+		patchBlog: builder.mutation<
+			number,
+			{ title: string; body: string; post_id: number }
+		>({
 			query: (body) => ({
 				url: `/post`,
 				method: 'PATCH',
