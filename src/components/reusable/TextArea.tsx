@@ -1,29 +1,26 @@
 import React from 'react';
 import * as Styled from '../../styles/styles';
 
-interface Input {
+interface TextArea {
 	label: string;
 	name: string;
-	type: string;
 	defaultValue: string | undefined;
 	placeholder: string | undefined;
 	handleChange: ({
 		target: { name, value },
-	}: React.ChangeEvent<HTMLInputElement>) => void;
+	}: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
-export const InputForm = ({
+export const TextArea = ({
 	label,
 	name,
-	type,
 	defaultValue,
 	placeholder,
 	handleChange,
-}: Input) => {
+}: TextArea) => {
 	return (
 		<Styled.InputContainer>
 			<label htmlFor={name}>{label}</label>
-			<input
-				type={type}
+			<textarea
 				name={name}
 				id={name}
 				defaultValue={defaultValue}

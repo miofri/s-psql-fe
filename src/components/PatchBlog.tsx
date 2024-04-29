@@ -6,6 +6,8 @@ import { RootState } from '../store/store';
 import { InputForm } from './reusable/InputForm';
 import { FormWrapper } from './reusable/FormWrapper';
 import * as Interface from '../interfaces/Blogs.interfaces';
+import { handleInputChange, handleTextAreaChange } from './utils';
+import { TextArea } from './reusable/TextArea';
 
 export const PatchBlog = () => {
 	const navigate = useNavigate();
@@ -36,13 +38,7 @@ export const PatchBlog = () => {
 				}));
 			}
 		}
-	}, [data, blogid]);
-
-	const handleChange = ({
-		target: { name, value },
-	}: React.ChangeEvent<HTMLInputElement>) => {
-		setFormState((prev) => ({ ...prev, [name]: value }));
-	};
+	}, [data, blogid, navigate, user]);
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -65,15 +61,14 @@ export const PatchBlog = () => {
 					type="text"
 					placeholder="Title"
 					defaultValue={formState?.title}
-					handleChange={handleChange}
+					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
-				<InputForm
+				<TextArea
 					label="Body"
 					name="body"
-					type="text"
 					placeholder="Body"
 					defaultValue={formState?.body}
-					handleChange={handleChange}
+					handleChange={(e) => handleTextAreaChange(e, setFormState)}
 				/>
 			</FormWrapper>
 		</>

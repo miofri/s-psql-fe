@@ -7,6 +7,8 @@ import { RootState } from '../store/store';
 import * as Interface from '../interfaces/Blogs.interfaces';
 import { FormWrapper } from './reusable/FormWrapper';
 import { InputForm } from './reusable/InputForm';
+import { TextArea } from './reusable/TextArea';
+import { handleInputChange, handleTextAreaChange } from './utils';
 
 export const CreateBlog = () => {
 	const navigate = useNavigate();
@@ -24,12 +26,6 @@ export const CreateBlog = () => {
 		}
 		setFormState((prev) => ({ ...prev, user_id: user.user.user_id }));
 	}, [user, navigate]);
-
-	const handleChange = ({
-		target: { name, value },
-	}: React.ChangeEvent<HTMLInputElement>) => {
-		setFormState((prev) => ({ ...prev, [name]: value }));
-	};
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -52,15 +48,14 @@ export const CreateBlog = () => {
 					type="text"
 					placeholder="Title"
 					defaultValue={formState?.title}
-					handleChange={handleChange}
+					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
-				<InputForm
+				<TextArea
 					label="Body"
 					name="body"
-					type="text"
 					placeholder="Body"
 					defaultValue={formState?.body}
-					handleChange={handleChange}
+					handleChange={(e) => handleTextAreaChange(e, setFormState)}
 				/>
 			</FormWrapper>
 		</>
