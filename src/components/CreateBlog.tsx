@@ -1,39 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useGetBlogsQuery, usePatchBlogMutation } from '../store/rtk/blogApi';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { InputForm } from './reusable/InputForm';
-import { FormWrapper } from './reusable/FormWrapper';
-import * as Interface from '../interfaces/Blogs.interfaces';
+import { useNavigate } from 'react-router-dom';
 
-export const PatchBlog = () => {
+import { usePostBlogMutation } from '../store/rtk/blogApi';
+import { RootState } from '../store/store';
+import * as Interface from '../interfaces/Blogs.interfaces';
+import { FormWrapper } from './reusable/FormWrapper';
+import { InputForm } from './reusable/InputForm';
+
+export const CreateBlog = () => {
 	const navigate = useNavigate();
 	const user = useSelector((state: RootState) => state.auth);
-	const { blogid } = useParams<{ blogid: string }>();
-	const { data } = useGetBlogsQuery(user.user.user_id);
-	const [patch, { isLoading }] = usePatchBlogMutation();
-	const [formState, setFormState] = useState<Interface.PatchBlog>({
-		title: '',
-		body: '',
-		post_id: 0,
+	const [post, { isLoading }] = usePostBlogMutation();
+	const [formState, setFormState] = useState<Interface.PostBlog>({
+		title: 'Title',
+		body: 'Body',
+		user_id: 0,
 	});
 
 	useEffect(() => {
-		if (data && blogid) {
-			const findBlog = data.find(
-				(blog: Interface.Blog) => blog.id === parseInt(blogid)
-			);
-			if (findBlog) {
-				setFormState((prev) => ({
-					...prev,
-					title: findBlog.title,
-					body: findBlog.body,
-					post_id: parseInt(blogid),
-				}));
-			}
-		}
-	}, [data, blogid]);
+		setFormState((prev) => ({ ...prev, user_id: user.user.user_id }));
+	}, [user]);
 
 	const handleChange = ({
 		target: { name, value },
@@ -43,17 +30,17 @@ export const PatchBlog = () => {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		await patch(formState);
+		await post(formState);
 		navigate('/blog');
 	};
 
 	return (
 		<>
 			<FormWrapper
-				formTitle="Edit Post"
+				formTitle="New Post"
 				isLoading={isLoading}
-				buttonLabel="Update post"
-				buttonLoading="Updating post..."
+				buttonLabel="Post"
+				buttonLoading="Posting..."
 				handleSubmit={handleSubmit}
 			>
 				<InputForm

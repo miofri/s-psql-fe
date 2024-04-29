@@ -1,24 +1,8 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
-import { RootState } from '../store';
-export interface Blog {
-	id: number;
-	title: string;
-	body: string;
-	date: string;
-	user_id: number;
-	created_at: string;
-}
-export interface PostBlog {
-	title: string;
-	body: string;
-	user_id: number;
-}
 
-export interface PutBlog {
-	title: string;
-	body: string;
-	user_id: number;
-}
+import { RootState } from '../store';
+import * as BlogInterface from '../../interfaces/Blogs.interfaces';
+
 export const blogApi = createApi({
 	reducerPath: 'blogsApi',
 	baseQuery: retry(
@@ -33,33 +17,44 @@ export const blogApi = createApi({
 		}),
 		{ maxRetries: 10 }
 	),
+	tagTypes: ['Blogs'],
 	endpoints: (builder) => ({
-		getBlogs: builder.query<Blog[], number>({
+		getBlogs: builder.query<BlogInterface.Blog[], number>({
 			query: (id) => `/post/${id}`,
+			providesTags: ['Blogs'],
 		}),
-		postBlog: builder.mutation<number, PostBlog>({
+		postBlog: builder.mutation<
+			BlogInterface.JSONMessage,
+			BlogInterface.PostBlog
+		>({
 			query: (body) => ({
 				url: `/post`,
 				method: 'POST',
 				body,
 			}),
+			invalidatesTags: ['Blogs'],
 		}),
-		deleteBlog: builder.mutation<number, { post_id: number }>({
+		deleteBlog: builder.mutation<
+			BlogInterface.JSONMessage,
+			{ post_id: number }
+		>({
 			query: (body) => ({
 				url: `/post`,
 				method: 'DELETE',
 				body,
 			}),
+			invalidatesTags: ['Blogs'],
 		}),
 		patchBlog: builder.mutation<
-			number,
-			{ title: string; body: string; post_id: number }
+			BlogInterface.JSONMessage,
+			BlogInterface.PatchBlog
 		>({
 			query: (body) => ({
 				url: `/post`,
 				method: 'PATCH',
 				body,
 			}),
+			invalidatesTags: ['Blogs'],
 		}),
 	}),
 });

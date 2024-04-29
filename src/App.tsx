@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import { store } from './store/store';
 import { BlogPosts } from './components/BlogPosts';
 import { PatchBlog } from './components/PatchBlog';
+import { CreateBlog } from './components/CreateBlog';
+import { SignUp } from './components/SignUp';
 
 const router = createBrowserRouter([
 	{
@@ -15,12 +17,18 @@ const router = createBrowserRouter([
 	{
 		path: '/blog',
 		element: <BlogPosts />,
-		children: [
-			{
-				path: '/editpost/:blogid',
-				element: <PatchBlog />,
-			},
-		],
+	},
+	{
+		path: '/editpost/:blogid',
+		element: <PatchBlog />,
+	},
+	{
+		path: '/newpost',
+		element: <CreateBlog />,
+	},
+	{
+		path: '/signup',
+		element: <SignUp />,
 	},
 ]);
 

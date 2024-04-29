@@ -1,14 +1,16 @@
 import React from 'react';
-import { Auth, useGetTokenMutation } from '../store/rtk/authApi';
-import { setCredentials } from '../store/rtk/authSlice';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+
+import { useGetTokenMutation } from '../store/rtk/authApi';
+import { setCredentials } from '../store/rtk/authSlice';
+import * as AuthInterface from '../interfaces/Auth.interfaces';
 //import { useDispatch } from 'react-redux';
 //import { useNavigate } from 'react-router-dom';
 
 export const Main = () => {
 	const [login, { isLoading }] = useGetTokenMutation();
-	const [formState, setFormState] = React.useState<Auth>({
+	const [formState, setFormState] = React.useState<AuthInterface.Auth>({
 		email: undefined,
 		password: undefined,
 	});
@@ -19,7 +21,6 @@ export const Main = () => {
 		target: { name, value },
 	}: React.ChangeEvent<HTMLInputElement>) => {
 		setFormState((prev) => ({ ...prev, [name]: value }));
-		console.log(formState);
 	};
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -54,6 +55,9 @@ export const Main = () => {
 				/>
 				<button type="submit" disabled={isLoading}>
 					{isLoading ? 'Logging in...' : 'Log in'}
+				</button>
+				<button type="button" onClick={() => navigate('/signup')}>
+					Sign Up
 				</button>
 			</form>
 		</>
