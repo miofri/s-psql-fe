@@ -40,9 +40,15 @@ export const BlogPosts = () => {
 	if (data) {
 		return (
 			<div>
+				<div>
+					<h1>Welcome, {user.user.email}</h1>
+					<button type="button" onClick={() => navigate('/profile')}>
+						Profile
+					</button>
+				</div>
 				{data?.map((post) => (
 					<article key={post.id}>
-						<h1>{post.title}</h1>
+						<h2>{post.title}</h2>
 						<p>{post.body}</p>
 						<button
 							type="button"

@@ -19,8 +19,11 @@ export const CreateBlog = () => {
 	});
 
 	useEffect(() => {
+		if (user.token === '') {
+			navigate('/');
+		}
 		setFormState((prev) => ({ ...prev, user_id: user.user.user_id }));
-	}, [user]);
+	}, [user, navigate]);
 
 	const handleChange = ({
 		target: { name, value },
@@ -47,6 +50,7 @@ export const CreateBlog = () => {
 					label="Title"
 					name="title"
 					type="text"
+					placeholder="Title"
 					defaultValue={formState?.title}
 					handleChange={handleChange}
 				/>
@@ -54,6 +58,7 @@ export const CreateBlog = () => {
 					label="Body"
 					name="body"
 					type="text"
+					placeholder="Body"
 					defaultValue={formState?.body}
 					handleChange={handleChange}
 				/>

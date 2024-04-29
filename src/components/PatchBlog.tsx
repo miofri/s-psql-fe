@@ -20,6 +20,9 @@ export const PatchBlog = () => {
 	});
 
 	useEffect(() => {
+		if (user.token === '') {
+			navigate('/');
+		}
 		if (data && blogid) {
 			const findBlog = data.find(
 				(blog: Interface.Blog) => blog.id === parseInt(blogid)
@@ -60,6 +63,7 @@ export const PatchBlog = () => {
 					label="Title"
 					name="title"
 					type="text"
+					placeholder="Title"
 					defaultValue={formState?.title}
 					handleChange={handleChange}
 				/>
@@ -67,6 +71,7 @@ export const PatchBlog = () => {
 					label="Body"
 					name="body"
 					type="text"
+					placeholder="Body"
 					defaultValue={formState?.body}
 					handleChange={handleChange}
 				/>

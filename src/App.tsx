@@ -8,6 +8,7 @@ import { BlogPosts } from './components/BlogPosts';
 import { PatchBlog } from './components/PatchBlog';
 import { CreateBlog } from './components/CreateBlog';
 import { SignUp } from './components/SignUp';
+import { Profile } from './components/Profile';
 
 const router = createBrowserRouter([
 	{
@@ -29,6 +30,10 @@ const router = createBrowserRouter([
 	{
 		path: '/signup',
 		element: <SignUp />,
+	},
+	{
+		path: '/profile',
+		element: <Profile />,
 	},
 ]);
 
