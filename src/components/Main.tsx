@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,14 +17,22 @@ export const Main = () => {
 		email: undefined,
 		password: undefined,
 	});
+	const [toggleLoginError, setToggleLoginError] = useState<boolean>(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 
+	useEffect(() => {}, [toggleLoginError]);
+
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		const user = await login(formState).unwrap();
-		dispatch(setCredentials(user));
-		navigate('/blog');
+		try {
+			const user = await login(formState).unwrap();
+			dispatch(setCredentials(user));
+			navigate('/blog');
+			// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		} catch (error: any) {
+			setToggleLoginError(!toggleLoginError);
+		}
 	};
 
 	return (
@@ -49,6 +57,7 @@ export const Main = () => {
 					defaultValue={formState?.email}
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
+				{toggleLoginError ? <p>Login credentials are incorrect</p> : <></>}
 				<Styled.ButtonGroup>
 					<Styled.LoginButton $nobg={false} type="submit" disabled={isLoading}>
 						{isLoading ? `Logging in...` : `Log in`}

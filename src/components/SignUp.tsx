@@ -38,6 +38,7 @@ export const SignUp = () => {
 					name="email"
 					type="text"
 					defaultValue=""
+					bool={false}
 					placeholder="firstname.lastname@mail.com"
 					handleChange={handleChange}
 				/>
@@ -47,6 +48,7 @@ export const SignUp = () => {
 					type="password"
 					defaultValue=""
 					placeholder=""
+					bool={false}
 					handleChange={handleChange}
 				/>
 			</FormWrapper>

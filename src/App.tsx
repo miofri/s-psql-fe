@@ -3,12 +3,13 @@ import './App.css';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Main } from './components/Main';
 import { Provider } from 'react-redux';
-import { store } from './store/store';
+import { persistor, store } from './store/store';
 import { BlogPosts } from './components/blogposts/BlogPosts';
 import { PatchBlog } from './components/blogposts/PatchBlog';
 import { CreateBlog } from './components/blogposts/CreateBlog';
 import { SignUp } from './components/SignUp';
 import { Profile } from './components/profile/Profile';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const router = createBrowserRouter([
 	{
@@ -40,7 +41,9 @@ const router = createBrowserRouter([
 const App = () => {
 	return (
 		<Provider store={store}>
-			<RouterProvider router={router} />
+			<PersistGate loading={null} persistor={persistor}>
+				<RouterProvider router={router} />
+			</PersistGate>
 		</Provider>
 	);
 };

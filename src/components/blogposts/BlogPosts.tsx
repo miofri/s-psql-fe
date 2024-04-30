@@ -13,14 +13,14 @@ import { Sidebar } from './Sidebar';
 export const BlogPosts = () => {
 	const navigate = useNavigate();
 	const user = useSelector((state: RootState) => state.auth);
-	const { data } = useGetBlogsQuery(user.user.user_id);
+	const { data, isError } = useGetBlogsQuery(user.user.user_id);
 	const [deletePost] = useDeleteBlogMutation();
 
 	useEffect(() => {
-		if (user.token === '') {
+		if (user.token === '' || isError) {
 			navigate('/');
 		}
-	}, [user, navigate, data]);
+	}, [user, navigate, data, isError]);
 
 	const handleUpdateClick = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
@@ -47,6 +47,7 @@ export const BlogPosts = () => {
 			<Styled.Dashboard>
 				<Sidebar email={user.user.email} handleNewPost={handleNewPost} />
 				<Styled.Blogposts>
+					<h1>Posts</h1>
 					{data?.map((post) => (
 						<Styled.Article key={post.id}>
 							<h2>{post.title}</h2>

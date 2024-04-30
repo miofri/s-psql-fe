@@ -15,7 +15,7 @@ export const blogApi = createApi({
 				}
 			},
 		}),
-		{ maxRetries: 10 }
+		{ maxRetries: 1 }
 	),
 	tagTypes: ['Blogs'],
 	endpoints: (builder) => ({

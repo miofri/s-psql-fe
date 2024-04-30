@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { device } from './breakpoints';
 
 const borderRadius = css`
 	border-radius: 0.375rem;
@@ -9,7 +10,8 @@ export const FormContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-width: 18rem;
+	min-width: 14vw;
+	max-width: 40vw;
 	padding: 4rem;
 	background-color: #272531;
 	${borderRadius}
@@ -24,12 +26,13 @@ export const Form = styled.form`
 export const ChangePasswordForm = styled(Form)`
 	margin: 1rem auto;
 	padding: 2rem;
-	background-color: #5c577a;
+	background-color: #302946;
 	${borderRadius}
 `;
 
 export const InputContainer = styled.div<{ $blogpost: boolean }>`
-	min-width: ${(props) => (props.$blogpost ? '40rem' : '20rem')};
+	width: ${(props) => (props.$blogpost ? '36vw' : '100%')};
+	max-width: 54vw;
 	display: flex;
 	flex-direction: column;
 	gap: 0.4rem;
@@ -44,10 +47,30 @@ export const Article = styled.article`
 	${borderRadius}
 `;
 
-export const NavButtons = styled.nav`
+export const NavButtonsGroup = styled.nav`
+	font-size: 0.8rem;
+	flex-direction: row;
 	display: flex;
-	flex-direction: column;
-	gap: 1rem;
+	@media ${device.lg} {
+		width: 100%;
+		flex-direction: column;
+		align-items: flex-start;
+		font-size: 1rem;
+	}
+`;
+
+export const NavButton = styled.button`
+	display: flex;
+	justify-content: center;
+	gap: 0.4rem;
+	padding: 0;
+	font-size: 0.8rem;
+	background-color: transparent;
+	transition: color 0.2s;
+	&:hover {
+		border: 1px solid transparent;
+		color: #bebbe6;
+	}
 `;
 export const Label = styled.label`
 	display: block;
@@ -56,7 +79,7 @@ export const Label = styled.label`
 	color: #ffffff;
 `;
 export const Input = styled.input<{ $blogpost: boolean }>`
-	width: ${(props) => (props.$blogpost ? '38rem' : '18rem')};
+	max-width: 100%;
 	padding: 0.625rem 1rem;
 	font-size: 0.875rem;
 	color: #ffffff;
@@ -69,7 +92,6 @@ export const Input = styled.input<{ $blogpost: boolean }>`
 export const TextArea = styled.textarea`
 	display: block;
 	padding: 0.625rem 1rem;
-	width: 38rem;
 	font-size: 0.875rem;
 	color: #fff;
 	background-color: #374151;
@@ -94,35 +116,66 @@ export const LoginButton = styled.button<{ $nobg: boolean }>`
 	background-color: ${(props) => (props.$nobg ? 'transparent' : 'auto')};
 `;
 
+export const ErrorText = styled.p`
+	text-align: center;
+	color: #c45f5f;
+`;
+
 export const Dashboard = styled.div`
 	display: grid;
-	grid-template-columns: 20vw 70vw;
-	gap: 4vw;
+	grid-template-rows: 20vw 70vw;
+	gap: 8vh;
 	width: 100vw;
 	height: 100vh;
+	@media ${device.lg} {
+		display: grid;
+		grid-template-columns: 18vw 70vw;
+		gap: 2vw;
+	}
 `;
 
 export const Sidebar = styled.div`
 	background-color: #272531;
-	height: 100vh;
+	min-height: 18vh;
 	display: flex;
-	flex-direction: column;
+	flex-direction: row;
+	justify-content: center;
 	align-items: center;
+	@media ${device.lg} {
+		align-items: flex-start;
+		height: 100vh;
+		${borderRadius};
+	}
 `;
 export const SidebarContent = styled.div`
-	width: 14vw;
-	margin-top: 4rem;
+	width: 70vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	@media ${device.lg} {
+		justify-content: flex-start;
+		width: 12vw;
+		margin-top: 4rem;
+	}
 `;
-
 export const CustomH1 = styled.h1`
-	font-size: 2rem;
+	font-size: 1.4rem;
+	overflow: wrap;
 `;
-
 export const Blogposts = styled.div`
-	margin-top: 5vh;
+	/*padding: 3vh;*/
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
-	height: 90vh;
+	height: 76vh;
 	overflow-y: scroll;
+	@media ${device.md} {
+		flex-direction: column;
+		height: 94vh;
+	}
+
+	h1 {
+		margin: 1rem 0;
+	}
 `;

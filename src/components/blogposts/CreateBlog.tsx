@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 import { usePostBlogMutation } from '../../store/rtk/blogApi';
-import { RootState } from '../../store/store';
+import { RootState, persistor } from '../../store/store';
 import * as Interface from '../../interfaces/Blogs.interfaces';
 import { FormWrapper } from '../reusable/FormWrapper';
 import { InputForm } from '../reusable/InputForm';
 import { TextArea } from '../reusable/TextArea';
 import { handleInputChange, handleTextAreaChange } from '../utils';
+import { authSlice } from '../../store/authSlice';
 
 export const CreateBlog = () => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const user = useSelector((state: RootState) => state.auth);
 	const [post, { isLoading }] = usePostBlogMutation();
 	const [formState, setFormState] = useState<Interface.PostBlog>({
@@ -29,10 +31,15 @@ export const CreateBlog = () => {
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		await post(formState);
-		navigate('/blog');
+		try {
+			await post(formState).unwrap();
+			navigate('/blog');
+		} catch (error) {
+			dispatch(authSlice.actions.clearCredentials());
+			persistor.purge();
+			navigate('/');
+		}
 	};
-
 	return (
 		<>
 			<FormWrapper

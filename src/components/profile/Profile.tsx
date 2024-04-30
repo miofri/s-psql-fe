@@ -35,23 +35,25 @@ export const Profile = () => {
 	};
 	return (
 		<Styled.FormContainer>
-			<Styled.CustomH1>Profile</Styled.CustomH1>
-			<p>Email: {user.user.email}</p>
-			<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
-				{toggleInput ? 'Cancel' : 'Change password'}
-			</button>
-			{toggleInput ? (
-				<ChangePasswordForm
-					handleSubmitPassword={handleSubmitPassword}
-					handleChange={handleChange}
-					isLoading={isLoading}
-				/>
-			) : (
-				<></>
-			)}
-			<button type="button" onClick={() => navigate('/blog')}>
-				Back
-			</button>
+			<div>
+				<Styled.CustomH1>Profile</Styled.CustomH1>
+				<p>Email: {user.user.email}</p>
+				<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
+					{toggleInput ? 'Cancel' : 'Change password'}
+				</button>
+				{toggleInput ? (
+					<ChangePasswordForm
+						handleSubmitPassword={handleSubmitPassword}
+						handleChange={handleChange}
+						isLoading={isLoading}
+					/>
+				) : (
+					<></>
+				)}
+				<button type="button" onClick={() => navigate('/blog')}>
+					Back
+				</button>
+			</div>
 		</Styled.FormContainer>
 	);
 };

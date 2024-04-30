@@ -14,7 +14,12 @@ export const authSlice = createSlice({
 			state.user = action.payload.user;
 			state.token = action.payload.token;
 		},
+		clearCredentials: (state) => {
+			state.user.email = '';
+			state.user.user_id = 0;
+			state.token = '';
+		},
 	},
 });
 
-export const { setCredentials } = authSlice.actions;
+export const { setCredentials, clearCredentials } = authSlice.actions;

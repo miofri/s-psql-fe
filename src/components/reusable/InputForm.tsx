@@ -26,6 +26,7 @@ export const InputForm = ({
 			<Styled.Label htmlFor={name}>{label}</Styled.Label>
 			<Styled.Input
 				$blogpost={bool}
+				required
 				type={type}
 				name={name}
 				id={name}
