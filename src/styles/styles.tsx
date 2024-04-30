@@ -122,10 +122,17 @@ export const ButtonGroup = styled.div`
 
 export const LoginButton = styled.button<{ $nobg: boolean }>`
 	background-color: ${(props) => (props.$nobg ? 'transparent' : 'auto')};
+	transition: 0.5s;
+	&:focus,
+	&:hover {
+		border-color: ${(props) => (props.$nobg ? 'transparent' : 'auto')};
+		color: ${(props) => (props.$nobg ? '#bebbe6' : '#ffffff')};
+	}
 `;
 
 export const ErrorText = styled.p`
 	text-align: center;
+	margin-bottom: 0;
 	color: #c45f5f;
 `;
 

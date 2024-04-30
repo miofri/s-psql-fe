@@ -57,7 +57,11 @@ export const Main = () => {
 					defaultValue={formState?.password}
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
-				{toggleLoginError ? <p>Login credentials are incorrect</p> : <></>}
+				{toggleLoginError ? (
+					<Styled.ErrorText>Login credentials are incorrect</Styled.ErrorText>
+				) : (
+					<></>
+				)}
 				<Styled.ButtonGroup>
 					<Styled.LoginButton $nobg={false} type="submit" disabled={isLoading}>
 						{isLoading ? `Logging in...` : `Log in`}
