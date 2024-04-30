@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { useGetTokenMutation } from '../store/rtk/authApi';
 import { setCredentials } from '../store/rtk/authSlice';
 import * as AuthInterface from '../interfaces/Auth.interfaces';
-import { FormWrapper } from './reusable/FormWrapper';
+import * as Styled from '../styles/styles';
 import { InputForm } from './reusable/InputForm';
 import { handleInputChange } from './utils';
 //import { useDispatch } from 'react-redux';
@@ -28,19 +28,15 @@ export const Main = () => {
 	};
 
 	return (
-		<>
-			<FormWrapper
-				formTitle="Login to BlogApp"
-				isLoading={isLoading}
-				buttonLabel="Login"
-				buttonLoading="Logging in..."
-				handleSubmit={handleSubmit}
-			>
+		<Styled.FormContainer>
+			<h1>Login</h1>
+			<Styled.Form onSubmit={(e) => handleSubmit(e)}>
 				<InputForm
 					label="Email"
 					name="email"
 					type="text"
 					placeholder="admin@mail.com"
+					bool={false}
 					defaultValue={formState?.email}
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
@@ -49,13 +45,23 @@ export const Main = () => {
 					name="password"
 					type="password"
 					placeholder="Enter password"
+					bool={false}
 					defaultValue={formState?.email}
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
-			</FormWrapper>
-			<button type="button" onClick={() => navigate('/signup')}>
-				Sign Up
-			</button>
-		</>
+				<Styled.LoginButtonGroup>
+					<Styled.LoginButton $nobg={false} type="submit" disabled={isLoading}>
+						{isLoading ? `Logging in...` : `Log in`}
+					</Styled.LoginButton>
+					<Styled.LoginButton
+						$nobg
+						type="button"
+						onClick={() => navigate('/signup')}
+					>
+						No account yet? Sign Up
+					</Styled.LoginButton>
+				</Styled.LoginButtonGroup>
+			</Styled.Form>
+		</Styled.FormContainer>
 	);
 };

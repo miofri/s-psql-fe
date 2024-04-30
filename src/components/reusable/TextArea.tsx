@@ -18,9 +18,9 @@ export const TextArea = ({
 	handleChange,
 }: TextArea) => {
 	return (
-		<Styled.InputContainer>
-			<label htmlFor={name}>{label}</label>
-			<textarea
+		<Styled.InputContainer $blogpost>
+			<Styled.Label htmlFor={name}>{label}</Styled.Label>
+			<Styled.TextArea
 				name={name}
 				id={name}
 				defaultValue={defaultValue}

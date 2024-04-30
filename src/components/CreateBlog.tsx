@@ -43,6 +43,7 @@ export const CreateBlog = () => {
 				handleSubmit={handleSubmit}
 			>
 				<InputForm
+					bool={true}
 					label="Title"
 					name="title"
 					type="text"

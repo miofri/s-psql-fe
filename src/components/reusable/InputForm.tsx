@@ -7,6 +7,7 @@ interface Input {
 	type: string;
 	defaultValue: string | undefined;
 	placeholder: string | undefined;
+	bool: boolean;
 	handleChange: ({
 		target: { name, value },
 	}: React.ChangeEvent<HTMLInputElement>) => void;
@@ -17,12 +18,14 @@ export const InputForm = ({
 	type,
 	defaultValue,
 	placeholder,
+	bool,
 	handleChange,
 }: Input) => {
 	return (
-		<Styled.InputContainer>
-			<label htmlFor={name}>{label}</label>
-			<input
+		<Styled.InputContainer $blogpost={bool}>
+			<Styled.Label htmlFor={name}>{label}</Styled.Label>
+			<Styled.Input
+				$blogpost={bool}
 				type={type}
 				name={name}
 				id={name}

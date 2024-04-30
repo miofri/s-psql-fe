@@ -60,6 +60,7 @@ export const PatchBlog = () => {
 					name="title"
 					type="text"
 					placeholder="Title"
+					bool={true}
 					defaultValue={formState?.title}
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>

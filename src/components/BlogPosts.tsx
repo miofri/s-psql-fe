@@ -40,37 +40,39 @@ export const BlogPosts = () => {
 
 	if (data) {
 		return (
-			<div>
-				<div>
-					<h1>Welcome, {user.user.email}</h1>
+			<Styled.Dashboard>
+				<Styled.Sidebar>
+					<Styled.SidebarH1>Welcome, {user.user.email}</Styled.SidebarH1>
 					<Styled.NavButtons role="navigation">
-						<button type="button" onClick={() => navigate('/profile')}>
-							Profile
-						</button>
 						<button type="button" onClick={handleNewPost}>
 							Create new blog post
 						</button>
+						<button type="button" onClick={() => navigate('/profile')}>
+							Profile
+						</button>
 					</Styled.NavButtons>
-				</div>
-				{data?.map((post) => (
-					<Styled.Article key={post.id}>
-						<h2>{post.title}</h2>
-						<p>{post.body}</p>
-						<button
-							type="button"
-							onClick={(e) => handleUpdateClick(e, post.id)}
-						>
-							Update
-						</button>
-						<button
-							type="submit"
-							onClick={(e) => handleDeleteClick(e, post.id)}
-						>
-							Delete
-						</button>
-					</Styled.Article>
-				))}
-			</div>
+				</Styled.Sidebar>
+				<Styled.Blogposts>
+					{data?.map((post) => (
+						<Styled.Article key={post.id}>
+							<h2>{post.title}</h2>
+							<p>{post.body}</p>
+							<button
+								type="button"
+								onClick={(e) => handleUpdateClick(e, post.id)}
+							>
+								Update
+							</button>
+							<button
+								type="submit"
+								onClick={(e) => handleDeleteClick(e, post.id)}
+							>
+								Delete
+							</button>
+						</Styled.Article>
+					))}
+				</Styled.Blogposts>
+			</Styled.Dashboard>
 		);
 	}
 	return <></>;
