@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useGetBlogsQuery, usePatchBlogMutation } from '../store/rtk/blogApi';
+import {
+	useGetBlogsQuery,
+	usePatchBlogMutation,
+} from '../../store/rtk/blogApi';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
-import { InputForm } from './reusable/InputForm';
-import { FormWrapper } from './reusable/FormWrapper';
-import * as Interface from '../interfaces/Blogs.interfaces';
-import { handleInputChange, handleTextAreaChange } from './utils';
-import { TextArea } from './reusable/TextArea';
+import { RootState } from '../../store/store';
+import { InputForm } from '../reusable/InputForm';
+import { FormWrapper } from '../reusable/FormWrapper';
+import * as Interface from '../../interfaces/Blogs.interfaces';
+import { handleInputChange, handleTextAreaChange } from '../utils';
+import { TextArea } from '../reusable/TextArea';
 
 export const PatchBlog = () => {
 	const navigate = useNavigate();

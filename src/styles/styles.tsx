@@ -1,4 +1,8 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
+
+const borderRadius = css`
+	border-radius: 0.375rem;
+`;
 
 export const FormContainer = styled.div`
 	display: flex;
@@ -7,14 +11,21 @@ export const FormContainer = styled.div`
 	align-items: center;
 	min-width: 18rem;
 	padding: 4rem;
-	border-radius: 0.375rem;
 	background-color: #272531;
+	${borderRadius}
 `;
 
 export const Form = styled.form`
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
+`;
+
+export const ChangePasswordForm = styled(Form)`
+	margin: 1rem auto;
+	padding: 2rem;
+	background-color: #5c577a;
+	${borderRadius}
 `;
 
 export const InputContainer = styled.div<{ $blogpost: boolean }>`
@@ -27,11 +38,10 @@ export const InputContainer = styled.div<{ $blogpost: boolean }>`
 export const Article = styled.article`
 	padding: 4rem;
 	background-color: #272531;
-	/*border: #e4e4e4 1px solid;*/
-	border-radius: 0.375rem;
 	button {
 		margin-right: 1rem;
 	}
+	${borderRadius}
 `;
 
 export const NavButtons = styled.nav`
@@ -51,9 +61,9 @@ export const Input = styled.input<{ $blogpost: boolean }>`
 	font-size: 0.875rem;
 	color: #ffffff;
 	background-color: #374151;
-	border-radius: 0.375rem75rem;
 	border: 1px solid #4b5563;
 	margin: 0;
+	${borderRadius}
 `;
 
 export const TextArea = styled.textarea`
@@ -63,13 +73,13 @@ export const TextArea = styled.textarea`
 	font-size: 0.875rem;
 	color: #fff;
 	background-color: #374151;
-	border-radius: 0.375rem75rem;
 	border: 1px solid #4b5563;
 	&:focus {
 		outline: none;
 		border-color: #2563eb;
 		box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
 	}
+	${borderRadius}
 `;
 
 export const ButtonGroup = styled.div`
@@ -86,7 +96,8 @@ export const LoginButton = styled.button<{ $nobg: boolean }>`
 
 export const Dashboard = styled.div`
 	display: grid;
-	grid-template-columns: 20vw 80vw;
+	grid-template-columns: 20vw 70vw;
+	gap: 4vw;
 	width: 100vw;
 	height: 100vh;
 `;
@@ -103,15 +114,15 @@ export const SidebarContent = styled.div`
 	margin-top: 4rem;
 `;
 
-export const SidebarH1 = styled.h1`
+export const CustomH1 = styled.h1`
 	font-size: 2rem;
 `;
 
 export const Blogposts = styled.div`
+	margin-top: 5vh;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
-	padding: 4rem;
-	height: 86vh;
+	height: 90vh;
 	overflow-y: scroll;
 `;

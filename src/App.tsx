@@ -4,11 +4,11 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { Main } from './components/Main';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
-import { BlogPosts } from './components/BlogPosts';
-import { PatchBlog } from './components/PatchBlog';
-import { CreateBlog } from './components/CreateBlog';
+import { BlogPosts } from './components/blogposts/BlogPosts';
+import { PatchBlog } from './components/blogposts/PatchBlog';
+import { CreateBlog } from './components/blogposts/CreateBlog';
 import { SignUp } from './components/SignUp';
-import { Profile } from './components/Profile';
+import { Profile } from './components/profile/Profile';
 
 const router = createBrowserRouter([
 	{

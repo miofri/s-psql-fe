@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { usePostBlogMutation } from '../store/rtk/blogApi';
-import { RootState } from '../store/store';
-import * as Interface from '../interfaces/Blogs.interfaces';
-import { FormWrapper } from './reusable/FormWrapper';
-import { InputForm } from './reusable/InputForm';
-import { TextArea } from './reusable/TextArea';
-import { handleInputChange, handleTextAreaChange } from './utils';
+import { usePostBlogMutation } from '../../store/rtk/blogApi';
+import { RootState } from '../../store/store';
+import * as Interface from '../../interfaces/Blogs.interfaces';
+import { FormWrapper } from '../reusable/FormWrapper';
+import { InputForm } from '../reusable/InputForm';
+import { TextArea } from '../reusable/TextArea';
+import { handleInputChange, handleTextAreaChange } from '../utils';
 
 export const CreateBlog = () => {
 	const navigate = useNavigate();

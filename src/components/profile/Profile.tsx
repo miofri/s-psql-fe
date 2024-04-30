@@ -1,9 +1,11 @@
 import { useEffect, useState } from 'react';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useChangePasswordMutation } from '../store/rtk/userApi';
-import * as AuthInterface from '../interfaces/Auth.interfaces';
+import { useChangePasswordMutation } from '../../store/rtk/userApi';
+import * as AuthInterface from '../../interfaces/Auth.interfaces';
+import * as Styled from '../../styles/styles';
+import { ChangePasswordForm } from './ChangePasswordForm';
 
 export const Profile = () => {
 	const navigate = useNavigate();
@@ -32,31 +34,24 @@ export const Profile = () => {
 		setNewPassword((prev) => ({ ...prev, password: value }));
 	};
 	return (
-		<div>
-			<h1>Profile</h1>
-			<h2>Email: {user.user.email}</h2>
+		<Styled.FormContainer>
+			<Styled.CustomH1>Profile</Styled.CustomH1>
+			<p>Email: {user.user.email}</p>
 			<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
-				Change password
+				{toggleInput ? 'Cancel' : 'Change password'}
 			</button>
 			{toggleInput ? (
-				<form onSubmit={(e) => handleSubmitPassword(e)}>
-					<label htmlFor="changePassword">Change Password</label>
-					<input
-						name="changePassword"
-						type="password"
-						id="changePassword"
-						onChange={handleChange}
-					/>
-					<button type="submit" disabled={isLoading}>
-						Submit
-					</button>
-					<button type="button" onClick={() => navigate('/blog')}>
-						Back
-					</button>
-				</form>
+				<ChangePasswordForm
+					handleSubmitPassword={handleSubmitPassword}
+					handleChange={handleChange}
+					isLoading={isLoading}
+				/>
 			) : (
 				<></>
 			)}
-		</div>
+			<button type="button" onClick={() => navigate('/blog')}>
+				Back
+			</button>
+		</Styled.FormContainer>
 	);
 };

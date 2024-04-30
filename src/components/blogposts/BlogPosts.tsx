@@ -2,9 +2,13 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
-import { RootState } from '../store/store';
-import { useDeleteBlogMutation, useGetBlogsQuery } from '../store/rtk/blogApi';
-import * as Styled from '../styles/styles';
+import { RootState } from '../../store/store';
+import {
+	useDeleteBlogMutation,
+	useGetBlogsQuery,
+} from '../../store/rtk/blogApi';
+import * as Styled from '../../styles/styles';
+import { Sidebar } from './Sidebar';
 
 export const BlogPosts = () => {
 	const navigate = useNavigate();
@@ -41,19 +45,7 @@ export const BlogPosts = () => {
 	if (data) {
 		return (
 			<Styled.Dashboard>
-				<Styled.Sidebar>
-					<Styled.SidebarContent>
-						<Styled.SidebarH1>Welcome, {user.user.email}</Styled.SidebarH1>
-						<Styled.NavButtons role="navigation">
-							<button type="button" onClick={handleNewPost}>
-								Create new blog post
-							</button>
-							<button type="button" onClick={() => navigate('/profile')}>
-								Profile
-							</button>
-						</Styled.NavButtons>
-					</Styled.SidebarContent>
-				</Styled.Sidebar>
+				<Sidebar email={user.user.email} handleNewPost={handleNewPost} />
 				<Styled.Blogposts>
 					{data?.map((post) => (
 						<Styled.Article key={post.id}>

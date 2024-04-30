@@ -26,12 +26,14 @@ export const FormWrapper = ({
 			<h1>{formTitle}</h1>
 			<Styled.Form onSubmit={(e) => handleSubmit(e)}>
 				{children}
-				<button type="submit" disabled={isLoading}>
-					{isLoading ? `${buttonLoading}` : `${buttonLabel}`}
-				</button>
-				<button type="button" onClick={() => navigate('/blog')}>
-					Back
-				</button>
+				<Styled.ButtonGroup>
+					<button type="submit" disabled={isLoading}>
+						{isLoading ? `${buttonLoading}` : `${buttonLabel}`}
+					</button>
+					<button type="button" onClick={() => navigate('/blog')}>
+						Back
+					</button>
+				</Styled.ButtonGroup>
 			</Styled.Form>
 		</Styled.FormContainer>
 	);
