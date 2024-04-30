@@ -2,6 +2,7 @@ import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
 import * as AuthInterface from '../../interfaces/Auth.interfaces';
 import { RootState } from '../store';
 import * as BlogInterface from '../../interfaces/Blogs.interfaces';
+import { sort_blogs_by_date_newest } from './api.utils';
 
 export const api = createApi({
 	reducerPath: 'authApi',
@@ -28,6 +29,10 @@ export const api = createApi({
 		}),
 		getBlogs: builder.query<BlogInterface.Blog[], number>({
 			query: (id) => `blogs/post/${id}`,
+			transformResponse: (response: BlogInterface.Blog[]) => {
+				const result = sort_blogs_by_date_newest(response);
+				return result;
+			},
 			providesTags: ['Blogs'],
 		}),
 		postBlog: builder.mutation<
