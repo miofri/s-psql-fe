@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const FormContainer = styled.div`
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	align-items: center;
-	min-width: 20rem;
-	padding: 2rem;
+	min-width: 18rem;
+	padding: 4rem;
 	border-radius: 0.375rem;
 	background-color: #272531;
 `;
@@ -71,7 +72,7 @@ export const TextArea = styled.textarea`
 	}
 `;
 
-export const LoginButtonGroup = styled.div`
+export const ButtonGroup = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;

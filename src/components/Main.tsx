@@ -49,7 +49,7 @@ export const Main = () => {
 					defaultValue={formState?.email}
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
-				<Styled.LoginButtonGroup>
+				<Styled.ButtonGroup>
 					<Styled.LoginButton $nobg={false} type="submit" disabled={isLoading}>
 						{isLoading ? `Logging in...` : `Log in`}
 					</Styled.LoginButton>
@@ -60,7 +60,7 @@ export const Main = () => {
 					>
 						No account yet? Sign Up
 					</Styled.LoginButton>
-				</Styled.LoginButtonGroup>
+				</Styled.ButtonGroup>
 			</Styled.Form>
 		</Styled.FormContainer>
 	);
