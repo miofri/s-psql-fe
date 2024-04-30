@@ -10,12 +10,10 @@ import {
 	REGISTER,
 	REHYDRATE,
 } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
 
-import { blogApi } from './rtk/blogApi';
+import storage from 'redux-persist/lib/storage';
 import { authSlice } from './authSlice';
-import { authApi } from './rtk/authApi';
-import { userApi } from './rtk/userApi';
+import { api } from './rtk/api';
 
 const persistConfig = {
 	key: 'auth',
@@ -28,9 +26,7 @@ const persistedReducer = persistReducer(persistConfig, authReducer);
 
 export const store = configureStore({
 	reducer: {
-		[blogApi.reducerPath]: blogApi.reducer,
-		[authApi.reducerPath]: authApi.reducer,
-		[userApi.reducerPath]: userApi.reducer,
+		[api.reducerPath]: api.reducer,
 		auth: persistedReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
@@ -38,7 +34,7 @@ export const store = configureStore({
 			serializableCheck: {
 				ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
 			},
-		}).concat(blogApi.middleware, authApi.middleware, userApi.middleware),
+		}).concat(api.middleware),
 });
 setupListeners(store.dispatch);
 

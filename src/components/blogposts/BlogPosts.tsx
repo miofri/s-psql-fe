@@ -3,10 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import { RootState } from '../../store/store';
-import {
-	useDeleteBlogMutation,
-	useGetBlogsQuery,
-} from '../../store/rtk/blogApi';
+import { useDeleteBlogMutation, useGetBlogsQuery } from '../../store/rtk/api';
 import * as Styled from '../../styles/styles';
 import { Sidebar } from './Sidebar';
 

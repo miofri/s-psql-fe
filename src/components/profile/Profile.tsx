@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useChangePasswordMutation } from '../../store/rtk/userApi';
+import { useChangePasswordMutation } from '../../store/rtk/api';
 import * as AuthInterface from '../../interfaces/Auth.interfaces';
 import * as Styled from '../../styles/styles';
 import { ChangePasswordForm } from './ChangePasswordForm';

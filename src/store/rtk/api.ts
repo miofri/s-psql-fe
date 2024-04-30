@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
-
+import * as AuthInterface from '../../interfaces/Auth.interfaces';
 import { RootState } from '../store';
 import * as BlogInterface from '../../interfaces/Blogs.interfaces';
 
-export const blogApi = createApi({
-	reducerPath: 'blogsApi',
+export const api = createApi({
+	reducerPath: 'authApi',
 	baseQuery: retry(
 		fetchBaseQuery({
-			baseUrl: `${import.meta.env.VITE_APP_URL}/api/blogs`,
+			baseUrl: `${import.meta.env.VITE_APP_URL}/api/`,
 			prepareHeaders: (headers, { getState }) => {
 				const token = (getState() as RootState).auth.token;
 				if (token) {
@@ -19,8 +19,15 @@ export const blogApi = createApi({
 	),
 	tagTypes: ['Blogs'],
 	endpoints: (builder) => ({
+		getToken: builder.mutation<AuthInterface.Credentials, AuthInterface.Auth>({
+			query: (body) => ({
+				url: `auth/login`,
+				method: 'POST',
+				body,
+			}),
+		}),
 		getBlogs: builder.query<BlogInterface.Blog[], number>({
-			query: (id) => `/post/${id}`,
+			query: (id) => `blogs/post/${id}`,
 			providesTags: ['Blogs'],
 		}),
 		postBlog: builder.mutation<
@@ -28,7 +35,7 @@ export const blogApi = createApi({
 			BlogInterface.PostBlog
 		>({
 			query: (body) => ({
-				url: `/post`,
+				url: `blogs/post`,
 				method: 'POST',
 				body,
 			}),
@@ -39,7 +46,7 @@ export const blogApi = createApi({
 			{ post_id: number }
 		>({
 			query: (body) => ({
-				url: `/post`,
+				url: `blogs/post`,
 				method: 'DELETE',
 				body,
 			}),
@@ -50,18 +57,39 @@ export const blogApi = createApi({
 			BlogInterface.PatchBlog
 		>({
 			query: (body) => ({
-				url: `/post`,
+				url: `blogs/post`,
 				method: 'PATCH',
 				body,
 			}),
 			invalidatesTags: ['Blogs'],
 		}),
+		signUp: builder.mutation<BlogInterface.JSONMessage, AuthInterface.Auth>({
+			query: (body) => ({
+				url: '/signup',
+				method: 'POST',
+				body,
+			}),
+		}),
+
+		changePassword: builder.mutation<
+			BlogInterface.JSONMessage,
+			AuthInterface.Auth
+		>({
+			query: (body) => ({
+				url: '/changepassword',
+				method: 'PATCH',
+				body,
+			}),
+		}),
 	}),
 });
 
 export const {
+	useGetTokenMutation,
 	useGetBlogsQuery,
 	usePostBlogMutation,
 	useDeleteBlogMutation,
 	usePatchBlogMutation,
-} = blogApi;
+	useSignUpMutation,
+	useChangePasswordMutation,
+} = api;

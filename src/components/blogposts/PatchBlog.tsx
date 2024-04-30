@@ -1,9 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import {
-	useGetBlogsQuery,
-	usePatchBlogMutation,
-} from '../../store/rtk/blogApi';
+import { useGetBlogsQuery, usePatchBlogMutation } from '../../store/rtk/api';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
 import { InputForm } from '../reusable/InputForm';

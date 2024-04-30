@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { useGetTokenMutation } from '../store/rtk/authApi';
+import { useGetTokenMutation } from '../store/rtk/api';
 import { setCredentials } from '../store/authSlice';
 import * as AuthInterface from '../interfaces/Auth.interfaces';
 import * as Styled from '../styles/styles';

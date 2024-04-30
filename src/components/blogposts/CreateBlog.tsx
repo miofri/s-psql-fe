@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { usePostBlogMutation } from '../../store/rtk/blogApi';
+import { usePostBlogMutation } from '../../store/rtk/api';
 import { RootState, persistor } from '../../store/store';
 import * as Interface from '../../interfaces/Blogs.interfaces';
 import { FormWrapper } from '../reusable/FormWrapper';
