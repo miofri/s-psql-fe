@@ -41,10 +41,12 @@ export const InputContainer = styled.div<{ $blogpost: boolean }>`
 export const Article = styled.article`
 	padding: 4rem;
 	background-color: #272531;
-	button {
-		margin-right: 1rem;
-	}
+	margin: auto 2vw;
+
 	${borderRadius}
+	@media ${device.md} {
+		margin-right: 2vh;
+	}
 `;
 
 export const NavButtonsGroup = styled.nav`
@@ -67,6 +69,7 @@ export const NavButton = styled.button`
 	font-size: 0.8rem;
 	background-color: transparent;
 	transition: color 0.2s;
+	text-align: left;
 	&:hover {
 		border: 1px solid transparent;
 		color: #bebbe6;
@@ -176,6 +179,6 @@ export const Blogposts = styled.div`
 	}
 
 	h1 {
-		margin: 1rem 0;
+		margin: auto 2vw;
 	}
 `;
