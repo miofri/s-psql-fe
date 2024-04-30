@@ -42,15 +42,17 @@ export const BlogPosts = () => {
 		return (
 			<Styled.Dashboard>
 				<Styled.Sidebar>
-					<Styled.SidebarH1>Welcome, {user.user.email}</Styled.SidebarH1>
-					<Styled.NavButtons role="navigation">
-						<button type="button" onClick={handleNewPost}>
-							Create new blog post
-						</button>
-						<button type="button" onClick={() => navigate('/profile')}>
-							Profile
-						</button>
-					</Styled.NavButtons>
+					<Styled.SidebarContent>
+						<Styled.SidebarH1>Welcome, {user.user.email}</Styled.SidebarH1>
+						<Styled.NavButtons role="navigation">
+							<button type="button" onClick={handleNewPost}>
+								Create new blog post
+							</button>
+							<button type="button" onClick={() => navigate('/profile')}>
+								Profile
+							</button>
+						</Styled.NavButtons>
+					</Styled.SidebarContent>
 				</Styled.Sidebar>
 				<Styled.Blogposts>
 					{data?.map((post) => (

@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Credentials } from './authApi';
+import { Credentials } from '../interfaces/Auth.interfaces';
 
 const initialState: Credentials = {
 	user: { email: '', user_id: 0 },

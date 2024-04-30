@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { setupListeners } from '@reduxjs/toolkit/query';
 import { blogApi } from './rtk/blogApi';
-import { authSlice } from './rtk/authSlice';
+import { authSlice } from './authSlice';
 import { authApi } from './rtk/authApi';
 import { userApi } from './rtk/userApi';
 
