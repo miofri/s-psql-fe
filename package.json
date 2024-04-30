@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "fly-up": "mv .env .env_2 && mv .env_1 .env && npm run build && cp -r dist ../psql-test && cd ../psql-test && fly deploy && cd ../s-psql-fe && mv .env .env_1 && mv .env_2 .env"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.1.0",
@@ -23,6 +24,9 @@
     "styled-components": "^6.1.8"
   },
   "devDependencies": {
+    "@types/babel__core": "^7.20.5",
+    "@types/babel__template": "^7.4.4",
+    "@types/babel__traverse": "^7.20.5",
     "@types/node": "^20.12.7",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",

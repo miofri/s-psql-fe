@@ -54,7 +54,7 @@ export const Main = () => {
 					type="password"
 					placeholder="Enter password"
 					bool={false}
-					defaultValue={formState?.email}
+					defaultValue={formState?.password}
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
 				{toggleLoginError ? <p>Login credentials are incorrect</p> : <></>}
