@@ -49,6 +49,11 @@ export const Article = styled.article`
 	}
 `;
 
+export const ArticleDate = styled.p`
+	color: #a7a7a7;
+	font-size: 0.8rem;
+`;
+
 export const NavButtonsGroup = styled.nav`
 	font-size: 0.8rem;
 	flex-direction: row;
@@ -131,7 +136,6 @@ export const Dashboard = styled.div`
 	width: 100vw;
 	height: 100vh;
 	@media ${device.lg} {
-		display: grid;
 		grid-template-columns: 18vw 70vw;
 		gap: 2vw;
 	}
@@ -174,6 +178,7 @@ export const Blogposts = styled.div`
 	height: 76vh;
 	overflow-y: scroll;
 	@media ${device.md} {
+		margin-top: 2vh;
 		flex-direction: column;
 		height: 94vh;
 	}

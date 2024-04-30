@@ -39,6 +39,14 @@ export const BlogPosts = () => {
 		navigate('/newpost');
 	};
 
+	const convertDate = (date: string) => {
+		console.log(date);
+
+		const newDate = new Date(parseInt(date)).toString().split(' ');
+		const finalDate = newDate.slice(0, 5).join(' ');
+		return finalDate;
+	};
+
 	if (data) {
 		return (
 			<Styled.Dashboard>
@@ -49,6 +57,9 @@ export const BlogPosts = () => {
 						<Styled.Article key={post.id}>
 							<h2>{post.title}</h2>
 							<p>{post.body}</p>
+							<Styled.ArticleDate>
+								Posted on {convertDate(post.created_at)}
+							</Styled.ArticleDate>
 							<button
 								type="button"
 								onClick={(e) => handleUpdateClick(e, post.id)}
