@@ -28,10 +28,11 @@ export const Main = () => {
 		try {
 			const user = await login(formState).unwrap();
 			dispatch(setCredentials(user));
+			setToggleLoginError(false);
 			navigate("/blog");
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
-			setToggleLoginError(!toggleLoginError);
+			setToggleLoginError(true);
 		}
 	};
 
