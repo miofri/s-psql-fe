@@ -21,9 +21,9 @@ export const Sidebar = ({ email, handleNewPost }: SidebarInterface) => {
 	return (
 		<Styled.BlogpostsStyle.Sidebar>
 			<Styled.BlogpostsStyle.SidebarContent>
-				<Styled.SharedStyle.CustomH1>
+				<Styled.SharedStyle.CustomH2>
 					Welcome, {email}
-				</Styled.SharedStyle.CustomH1>
+				</Styled.SharedStyle.CustomH2>
 				<Styled.BlogpostsStyle.NavButtonsGroup role="navigation">
 					<Styled.BlogpostsStyle.NavButton
 						type="button"

@@ -103,3 +103,18 @@ export const CustomH1 = styled.h1`
 		font-size: 3rem;
 	}
 `;
+
+export const CustomH2 = styled.h2`
+	margin: 0;
+	font-size: 1.1rem;
+	@media ${device.sm} {
+		font-size: 1.4rem;
+	}
+	@media ${device.xl} {
+		font-size: 3rem;
+	}
+`;
+
+export const ProfileContainer = styled.div`
+	max-width: 60vw;
+`;

@@ -35,7 +35,7 @@ export const Profile = () => {
 	};
 	return (
 		<Styled.SharedStyle.FormContainer>
-			<div>
+			<Styled.SharedStyle.ProfileContainer>
 				<Styled.SharedStyle.CustomH1>Profile</Styled.SharedStyle.CustomH1>
 				<p>Email: {user.user.email}</p>
 				<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
@@ -53,7 +53,7 @@ export const Profile = () => {
 				<button type="button" onClick={() => navigate('/blog')}>
 					Back
 				</button>
-			</div>
+			</Styled.SharedStyle.ProfileContainer>
 		</Styled.SharedStyle.FormContainer>
 	);
 };
