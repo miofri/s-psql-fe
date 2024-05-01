@@ -74,6 +74,7 @@ export const NavButtonsGroup = styled.nav`
 export const NavButton = styled.button`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	gap: 0.4rem;
 	padding: 0;
 	background-color: transparent;

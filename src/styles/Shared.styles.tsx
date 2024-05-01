@@ -111,7 +111,7 @@ export const CustomH2 = styled.h2`
 		font-size: 1.4rem;
 	}
 	@media ${device.xl} {
-		font-size: 3rem;
+		font-size: 1.6rem;
 	}
 `;
 
