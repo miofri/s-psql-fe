@@ -8,7 +8,7 @@ export const api = createApi({
 	reducerPath: 'authApi',
 	baseQuery: retry(
 		fetchBaseQuery({
-			baseUrl: `${import.meta.env.VITE_APP_URL}/api/`,
+			baseUrl: `${import.meta.env.VITE_APP_URL}`,
 			prepareHeaders: (headers, { getState }) => {
 				const token = (getState() as RootState).auth.token;
 				if (token) {

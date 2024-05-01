@@ -40,8 +40,6 @@ export const BlogPosts = () => {
 	};
 
 	const convertDate = (date: string) => {
-		console.log(date);
-
 		const newDate = new Date(parseInt(date)).toString().split(' ');
 		const finalDate = newDate.slice(0, 5).join(' ');
 		return finalDate;
