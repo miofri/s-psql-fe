@@ -1,9 +1,10 @@
-import React from 'react';
-import { FormWrapper } from './reusable/FormWrapper';
-import { InputForm } from './reusable/InputForm';
-import * as AuthInterface from '../interfaces/Auth.interfaces';
-import { useSignUpMutation } from '../store/rtk/api';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { FormWrapper } from "./reusable/FormWrapper";
+import { InputForm } from "./reusable/InputForm";
+import * as AuthInterface from "../interfaces/Auth.interfaces";
+import { useSignUpMutation } from "../store/rtk/api";
+import { useNavigate } from "react-router-dom";
+import * as Styled from "../styles/styles";
 
 export const SignUp = () => {
 	const navigate = useNavigate();
@@ -12,6 +13,7 @@ export const SignUp = () => {
 		email: undefined,
 		password: undefined,
 	});
+	const [toggleSignupError, setToggleSignupError] = useState<boolean>(false);
 
 	const handleChange = ({
 		target: { name, value },
@@ -20,38 +22,48 @@ export const SignUp = () => {
 	};
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		await signup(formState).unwrap();
-		navigate('/');
+		try {
+			await signup(formState).unwrap();
+			setToggleSignupError(false);
+			navigate("/");
+		} catch (error) {
+			setToggleSignupError(true);
+		}
 	};
 
 	return (
-		<div>
-			<FormWrapper
-				formTitle="Sign Up"
-				buttonLabel="Register"
-				buttonLoading="Registering..."
-				handleSubmit={handleSubmit}
-				isLoading={isLoading}
-			>
-				<InputForm
-					label="Email"
-					name="email"
-					type="text"
-					defaultValue=""
-					bool={false}
-					placeholder="firstname.lastname@mail.com"
-					handleChange={handleChange}
-				/>
-				<InputForm
-					label="Password"
-					name="password"
-					type="password"
-					defaultValue=""
-					placeholder="******"
-					bool={false}
-					handleChange={handleChange}
-				/>
-			</FormWrapper>
-		</div>
+		<FormWrapper
+			formTitle="Sign Up"
+			buttonLabel="Register"
+			buttonLoading="Registering..."
+			handleSubmit={handleSubmit}
+			isLoading={isLoading}
+		>
+			<InputForm
+				label="Email"
+				name="email"
+				type="text"
+				defaultValue=""
+				bool={false}
+				placeholder="firstname.lastname@mail.com"
+				handleChange={handleChange}
+			/>
+			<InputForm
+				label="Password"
+				name="password"
+				type="password"
+				defaultValue=""
+				placeholder="******"
+				bool={false}
+				handleChange={handleChange}
+			/>
+			{toggleSignupError ? (
+				<Styled.SharedStyle.ErrorText>
+					Account exists!
+				</Styled.SharedStyle.ErrorText>
+			) : (
+				<></>
+			)}
+		</FormWrapper>
 	);
 };
