@@ -34,9 +34,9 @@ export const Profile = () => {
 		setNewPassword((prev) => ({ ...prev, password: value }));
 	};
 	return (
-		<Styled.FormContainer>
+		<Styled.SharedStyle.FormContainer>
 			<div>
-				<Styled.CustomH1>Profile</Styled.CustomH1>
+				<Styled.SharedStyle.CustomH1>Profile</Styled.SharedStyle.CustomH1>
 				<p>Email: {user.user.email}</p>
 				<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
 					{toggleInput ? 'Cancel' : 'Change password'}
@@ -54,6 +54,6 @@ export const Profile = () => {
 					Back
 				</button>
 			</div>
-		</Styled.FormContainer>
+		</Styled.SharedStyle.FormContainer>
 	);
 };

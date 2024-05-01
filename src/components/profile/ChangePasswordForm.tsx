@@ -15,9 +15,13 @@ export const ChangePasswordForm = ({
 	isLoading,
 }: ChangePwInterface) => {
 	return (
-		<Styled.ChangePasswordForm onSubmit={(e) => handleSubmitPassword(e)}>
-			<Styled.Label htmlFor="changePassword">Change Password</Styled.Label>
-			<Styled.Input
+		<Styled.SharedStyle.ChangePasswordForm
+			onSubmit={(e) => handleSubmitPassword(e)}
+		>
+			<Styled.SharedStyle.Label htmlFor="changePassword">
+				Change Password
+			</Styled.SharedStyle.Label>
+			<Styled.SharedStyle.Input
 				$blogpost={false}
 				name="changePassword"
 				type="password"
@@ -27,6 +31,6 @@ export const ChangePasswordForm = ({
 			<button type="submit" disabled={isLoading}>
 				Submit
 			</button>
-		</Styled.ChangePasswordForm>
+		</Styled.SharedStyle.ChangePasswordForm>
 	);
 };

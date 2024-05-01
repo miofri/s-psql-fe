@@ -22,19 +22,19 @@ export const FormWrapper = ({
 	const navigate = useNavigate();
 
 	return (
-		<Styled.FormContainer>
+		<Styled.SharedStyle.FormContainer>
 			<h1>{formTitle}</h1>
-			<Styled.Form onSubmit={(e) => handleSubmit(e)}>
+			<Styled.SharedStyle.Form onSubmit={(e) => handleSubmit(e)}>
 				{children}
-				<Styled.ButtonGroup>
+				<Styled.SharedStyle.ButtonGroup>
 					<button type="submit" disabled={isLoading}>
 						{isLoading ? `${buttonLoading}` : `${buttonLabel}`}
 					</button>
 					<button type="button" onClick={() => navigate('/blog')}>
 						Back
 					</button>
-				</Styled.ButtonGroup>
-			</Styled.Form>
-		</Styled.FormContainer>
+				</Styled.SharedStyle.ButtonGroup>
+			</Styled.SharedStyle.Form>
+		</Styled.SharedStyle.FormContainer>
 	);
 };

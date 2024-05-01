@@ -47,17 +47,17 @@ export const BlogPosts = () => {
 
 	if (data) {
 		return (
-			<Styled.Dashboard>
+			<Styled.BlogpostsStyle.Dashboard>
 				<Sidebar email={user.user.email} handleNewPost={handleNewPost} />
-				<Styled.Blogposts>
+				<Styled.BlogpostsStyle.Blogposts>
 					<h1>Posts</h1>
 					{data?.map((post) => (
-						<Styled.Article key={post.id}>
+						<Styled.BlogpostsStyle.Article key={post.id}>
 							<h2>{post.title}</h2>
 							<p>{post.body}</p>
-							<Styled.ArticleDate>
+							<Styled.BlogpostsStyle.ArticleDate>
 								Posted on {convertDate(post.created_at)}
-							</Styled.ArticleDate>
+							</Styled.BlogpostsStyle.ArticleDate>
 							<button
 								type="button"
 								onClick={(e) => handleUpdateClick(e, post.id)}
@@ -70,10 +70,10 @@ export const BlogPosts = () => {
 							>
 								Delete
 							</button>
-						</Styled.Article>
+						</Styled.BlogpostsStyle.Article>
 					))}
-				</Styled.Blogposts>
-			</Styled.Dashboard>
+				</Styled.BlogpostsStyle.Blogposts>
+			</Styled.BlogpostsStyle.Dashboard>
 		);
 	}
 	return <></>;

@@ -36,9 +36,9 @@ export const Main = () => {
 	};
 
 	return (
-		<Styled.FormContainer>
+		<Styled.SharedStyle.FormContainer>
 			<h1>Login</h1>
-			<Styled.Form onSubmit={(e) => handleSubmit(e)}>
+			<Styled.SharedStyle.Form onSubmit={(e) => handleSubmit(e)}>
 				<InputForm
 					label="Email"
 					name="email"
@@ -58,23 +58,29 @@ export const Main = () => {
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
 				{toggleLoginError ? (
-					<Styled.ErrorText>Login credentials are incorrect</Styled.ErrorText>
+					<Styled.SharedStyle.ErrorText>
+						Login credentials are incorrect
+					</Styled.SharedStyle.ErrorText>
 				) : (
 					<></>
 				)}
-				<Styled.ButtonGroup>
-					<Styled.LoginButton $nobg={false} type="submit" disabled={isLoading}>
+				<Styled.SharedStyle.ButtonGroup>
+					<Styled.SharedStyle.LoginButton
+						$nobg={false}
+						type="submit"
+						disabled={isLoading}
+					>
 						{isLoading ? `Logging in...` : `Log in`}
-					</Styled.LoginButton>
-					<Styled.LoginButton
+					</Styled.SharedStyle.LoginButton>
+					<Styled.SharedStyle.LoginButton
 						$nobg
 						type="button"
 						onClick={() => navigate('/signup')}
 					>
 						No account yet? Sign Up
-					</Styled.LoginButton>
-				</Styled.ButtonGroup>
-			</Styled.Form>
-		</Styled.FormContainer>
+					</Styled.SharedStyle.LoginButton>
+				</Styled.SharedStyle.ButtonGroup>
+			</Styled.SharedStyle.Form>
+		</Styled.SharedStyle.FormContainer>
 	);
 };

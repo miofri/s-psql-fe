@@ -18,15 +18,17 @@ export const TextArea = ({
 	handleChange,
 }: TextArea) => {
 	return (
-		<Styled.InputContainer $blogpost>
-			<Styled.Label htmlFor={name}>{label}</Styled.Label>
-			<Styled.TextArea
+		<Styled.SharedStyle.InputContainer $blogpost>
+			<Styled.SharedStyle.Label htmlFor={name}>
+				{label}
+			</Styled.SharedStyle.Label>
+			<Styled.SharedStyle.TextArea
 				name={name}
 				id={name}
 				defaultValue={defaultValue}
 				placeholder={placeholder}
 				onChange={handleChange}
 			/>
-		</Styled.InputContainer>
+		</Styled.SharedStyle.InputContainer>
 	);
 };

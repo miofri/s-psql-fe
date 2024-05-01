@@ -22,9 +22,11 @@ export const InputForm = ({
 	handleChange,
 }: Input) => {
 	return (
-		<Styled.InputContainer $blogpost={bool}>
-			<Styled.Label htmlFor={name}>{label}</Styled.Label>
-			<Styled.Input
+		<Styled.SharedStyle.InputContainer $blogpost={bool}>
+			<Styled.SharedStyle.Label htmlFor={name}>
+				{label}
+			</Styled.SharedStyle.Label>
+			<Styled.SharedStyle.Input
 				$blogpost={bool}
 				required
 				type={type}
@@ -34,6 +36,6 @@ export const InputForm = ({
 				placeholder={placeholder}
 				onChange={handleChange}
 			/>
-		</Styled.InputContainer>
+		</Styled.SharedStyle.InputContainer>
 	);
 };

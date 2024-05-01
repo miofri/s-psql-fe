@@ -19,22 +19,33 @@ export const Sidebar = ({ email, handleNewPost }: SidebarInterface) => {
 		navigate('/');
 	};
 	return (
-		<Styled.Sidebar>
-			<Styled.SidebarContent>
-				<Styled.CustomH1>Welcome, {email}</Styled.CustomH1>
-				<Styled.NavButtonsGroup role="navigation">
-					<Styled.NavButton type="button" onClick={handleNewPost}>
+		<Styled.BlogpostsStyle.Sidebar>
+			<Styled.BlogpostsStyle.SidebarContent>
+				<Styled.SharedStyle.CustomH1>
+					Welcome, {email}
+				</Styled.SharedStyle.CustomH1>
+				<Styled.BlogpostsStyle.NavButtonsGroup role="navigation">
+					<Styled.BlogpostsStyle.NavButton
+						type="button"
+						onClick={handleNewPost}
+					>
 						<span className="material-symbols-outlined">edit_note</span> Create
 						new blog post
-					</Styled.NavButton>
-					<Styled.NavButton type="button" onClick={() => navigate('/profile')}>
+					</Styled.BlogpostsStyle.NavButton>
+					<Styled.BlogpostsStyle.NavButton
+						type="button"
+						onClick={() => navigate('/profile')}
+					>
 						<span className="material-symbols-outlined">person</span> Profile
-					</Styled.NavButton>
-					<Styled.NavButton type="button" onClick={(e) => handleLogout(e)}>
+					</Styled.BlogpostsStyle.NavButton>
+					<Styled.BlogpostsStyle.NavButton
+						type="button"
+						onClick={(e) => handleLogout(e)}
+					>
 						<span className="material-symbols-outlined">logout</span> Logout
-					</Styled.NavButton>
-				</Styled.NavButtonsGroup>
-			</Styled.SidebarContent>
-		</Styled.Sidebar>
+					</Styled.BlogpostsStyle.NavButton>
+				</Styled.BlogpostsStyle.NavButtonsGroup>
+			</Styled.BlogpostsStyle.SidebarContent>
+		</Styled.BlogpostsStyle.Sidebar>
 	);
 };
