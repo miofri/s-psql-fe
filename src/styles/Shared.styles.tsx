@@ -117,4 +117,5 @@ export const CustomH2 = styled.h2`
 
 export const ProfileContainer = styled.div`
 	max-width: 60vw;
+	text-align: center;
 `;
