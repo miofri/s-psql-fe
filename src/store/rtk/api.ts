@@ -70,7 +70,7 @@ export const api = createApi({
 		}),
 		signUp: builder.mutation<BlogInterface.JSONMessage, AuthInterface.Auth>({
 			query: (body) => ({
-				url: '/signup',
+				url: 'users/signup',
 				method: 'POST',
 				body,
 			}),
@@ -81,7 +81,7 @@ export const api = createApi({
 			AuthInterface.Auth
 		>({
 			query: (body) => ({
-				url: '/changepassword',
+				url: 'users/changepassword',
 				method: 'PATCH',
 				body,
 			}),
