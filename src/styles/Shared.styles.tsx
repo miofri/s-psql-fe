@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from './breakpoints';
 
 export const borderRadius = '0.375rem';
 
@@ -93,6 +94,12 @@ export const ErrorText = styled.p`
 `;
 
 export const CustomH1 = styled.h1`
-	font-size: 1.4rem;
+	font-size: 1.8rem;
 	overflow: wrap;
+	@media ${device.xs} {
+		font-size: 2rem;
+	}
+	@media ${device.md} {
+		font-size: 3rem;
+	}
 `;

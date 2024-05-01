@@ -37,7 +37,7 @@ export const Main = () => {
 
 	return (
 		<Styled.SharedStyle.FormContainer>
-			<h1>Login</h1>
+			<Styled.SharedStyle.CustomH1>Login</Styled.SharedStyle.CustomH1>
 			<Styled.SharedStyle.Form onSubmit={(e) => handleSubmit(e)}>
 				<InputForm
 					label="Email"

@@ -23,7 +23,7 @@ export const FormWrapper = ({
 
 	return (
 		<Styled.SharedStyle.FormContainer>
-			<h1>{formTitle}</h1>
+			<Styled.SharedStyle.CustomH1>{formTitle}</Styled.SharedStyle.CustomH1>
 			<Styled.SharedStyle.Form onSubmit={(e) => handleSubmit(e)}>
 				{children}
 				<Styled.SharedStyle.ButtonGroup>
