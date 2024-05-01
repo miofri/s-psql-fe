@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { useGetTokenMutation } from '../store/rtk/api';
-import { setCredentials } from '../store/authSlice';
-import * as AuthInterface from '../interfaces/Auth.interfaces';
-import * as Styled from '../styles/styles';
-import { InputForm } from './reusable/InputForm';
-import { handleInputChange } from './utils';
+import { useGetTokenMutation } from "../store/rtk/api";
+import { setCredentials } from "../store/authSlice";
+import * as AuthInterface from "../interfaces/Auth.interfaces";
+import * as Styled from "../styles/styles";
+import { InputForm } from "./reusable/InputForm";
+import { handleInputChange } from "./utils";
 //import { useDispatch } from 'react-redux';
 //import { useNavigate } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ export const Main = () => {
 		try {
 			const user = await login(formState).unwrap();
 			dispatch(setCredentials(user));
-			navigate('/blog');
+			navigate("/blog");
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setToggleLoginError(!toggleLoginError);
@@ -75,9 +75,10 @@ export const Main = () => {
 					<Styled.SharedStyle.LoginButton
 						$nobg
 						type="button"
-						onClick={() => navigate('/signup')}
+						onClick={() => navigate("/signup")}
 					>
-						No account yet? Sign Up
+						No account yet? <br />
+						Sign up
 					</Styled.SharedStyle.LoginButton>
 				</Styled.SharedStyle.ButtonGroup>
 			</Styled.SharedStyle.Form>
