@@ -22,7 +22,6 @@ export const ChangePasswordForm = ({
 				Change Password
 			</Styled.SharedStyle.Label>
 			<Styled.SharedStyle.Input
-				$blogpost={false}
 				name="changePassword"
 				type="password"
 				id="changePassword"

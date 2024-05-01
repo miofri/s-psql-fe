@@ -27,7 +27,6 @@ export const InputForm = ({
 				{label}
 			</Styled.SharedStyle.Label>
 			<Styled.SharedStyle.Input
-				$blogpost={bool}
 				required
 				type={type}
 				name={name}

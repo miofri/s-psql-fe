@@ -47,7 +47,7 @@ export const SignUp = () => {
 					name="password"
 					type="password"
 					defaultValue=""
-					placeholder=""
+					placeholder="******"
 					bool={false}
 					handleChange={handleChange}
 				/>
