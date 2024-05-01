@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { RootState } from '../../store/store';
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { useChangePasswordMutation } from '../../store/rtk/api';
-import * as AuthInterface from '../../interfaces/Auth.interfaces';
-import * as Styled from '../../styles/styles';
-import { ChangePasswordForm } from './ChangePasswordForm';
+import { useEffect, useState } from "react";
+import { RootState } from "../../store/store";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useChangePasswordMutation } from "../../store/rtk/api";
+import * as AuthInterface from "../../interfaces/Auth.interfaces";
+import * as Styled from "../../styles/styles";
+import { ChangePasswordForm } from "./ChangePasswordForm";
 
 export const Profile = () => {
 	const navigate = useNavigate();
@@ -13,20 +13,26 @@ export const Profile = () => {
 	const [changePassword, { isLoading }] = useChangePasswordMutation();
 	const [toggleInput, setToggleInput] = useState<boolean>(false);
 	const [newPassword, setNewPassword] = useState<AuthInterface.Auth>({
-		email: '',
-		password: '',
+		email: "",
+		password: "",
 	});
+	const [changeStatus, setChangeStatus] = useState<string>("");
 
 	useEffect(() => {
-		if (user.token === '') {
-			navigate('/');
+		if (user.token === "") {
+			navigate("/");
 		}
 		setNewPassword((prev) => ({ ...prev, email: user.user.email }));
 	}, [user, navigate]);
 
-	const handleSubmitPassword = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		changePassword(newPassword);
+		try {
+			await changePassword(newPassword);
+			setChangeStatus("Password changed successfully!");
+		} catch (error) {
+			setChangeStatus("Soemthing went wrong...");
+		}
 	};
 	const handleChange = ({
 		target: { value },
@@ -39,7 +45,7 @@ export const Profile = () => {
 				<Styled.SharedStyle.CustomH1>Profile</Styled.SharedStyle.CustomH1>
 				<p>Email: {user.user.email}</p>
 				<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
-					{toggleInput ? 'Cancel' : 'Change password'}
+					{toggleInput ? "Cancel" : "Change password"}
 				</button>
 				{toggleInput ? (
 					<ChangePasswordForm
@@ -50,7 +56,8 @@ export const Profile = () => {
 				) : (
 					<></>
 				)}
-				<button type="button" onClick={() => navigate('/blog')}>
+				{changeStatus ? <p>{changeStatus}</p> : <></>}
+				<button type="button" onClick={() => navigate("/blog")}>
 					Back
 				</button>
 			</Styled.SharedStyle.ProfileContainer>
