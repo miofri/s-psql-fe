@@ -94,7 +94,7 @@ export const ErrorText = styled.p`
 `;
 
 export const CustomH1 = styled.h1`
-	margin: 0 2vw 0;
+	margin: 0 2vw 2vh;
 	font-size: 1.8rem;
 	overflow: wrap;
 	@media ${device.xs} {
