@@ -44,7 +44,7 @@ export const Main = () => {
 					label="Email"
 					name="email"
 					type="text"
-					placeholder="admin@mail.com"
+					placeholder="firstname.lastname@mail.com"
 					bool={false}
 					defaultValue={formState?.email}
 					handleChange={(e) => handleInputChange(e, setFormState)}
