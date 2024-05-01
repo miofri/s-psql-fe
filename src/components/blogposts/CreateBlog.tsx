@@ -55,14 +55,14 @@ export const CreateBlog = () => {
 					name="title"
 					type="text"
 					placeholder="Title"
-					defaultValue={formState?.title}
+					defaultValue=""
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
 				<TextArea
 					label="Body"
 					name="body"
 					placeholder="Body"
-					defaultValue={formState?.body}
+					defaultValue=""
 					handleChange={(e) => handleTextAreaChange(e, setFormState)}
 				/>
 			</FormWrapper>

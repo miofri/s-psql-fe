@@ -1,7 +1,7 @@
-import styled from 'styled-components';
-import { device } from './breakpoints';
+import styled from "styled-components";
+import { device } from "./breakpoints";
 
-export const borderRadius = '0.375rem';
+export const borderRadius = "0.375rem";
 
 export const FormContainer = styled.div`
 	display: flex;
@@ -36,7 +36,7 @@ export const Label = styled.label`
 `;
 
 export const InputContainer = styled.div<{ $blogpost: boolean }>`
-	width: ${(props) => (props.$blogpost ? '36vw' : '100%')};
+	width: ${(props) => (props.$blogpost ? "36vw" : "100%")};
 	max-width: 54vw;
 	display: flex;
 	flex-direction: column;
@@ -78,12 +78,12 @@ export const ButtonGroup = styled.div`
 `;
 
 export const LoginButton = styled.button<{ $nobg: boolean }>`
-	background-color: ${(props) => (props.$nobg ? 'transparent' : 'auto')};
+	background-color: ${(props) => (props.$nobg ? "transparent" : "auto")};
 	transition: 0.5s;
 	&:focus,
 	&:hover {
-		border-color: ${(props) => (props.$nobg ? 'transparent' : 'auto')};
-		color: ${(props) => (props.$nobg ? '#bebbe6' : '#ffffff')};
+		border-color: ${(props) => (props.$nobg ? "transparent" : "auto")};
+		color: ${(props) => (props.$nobg ? "#bebbe6" : "#ffffff")};
 	}
 `;
 
@@ -94,6 +94,7 @@ export const ErrorText = styled.p`
 `;
 
 export const CustomH1 = styled.h1`
+	margin: 0 2vw 0;
 	font-size: 1.8rem;
 	overflow: wrap;
 	@media ${device.xs} {

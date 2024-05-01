@@ -50,7 +50,9 @@ export const BlogPosts = () => {
 			<Styled.BlogpostsStyle.Dashboard>
 				<Sidebar email={user.user.email} handleNewPost={handleNewPost} />
 				<Styled.BlogpostsStyle.Blogposts>
-					<h1>Posts</h1>
+					<Styled.SharedStyle.CustomH1>
+						{data.length > 0 ? `Posts` : 'Start by creating a post'}
+					</Styled.SharedStyle.CustomH1>
 					{data?.map((post) => (
 						<Styled.BlogpostsStyle.Article key={post.id}>
 							<h2>{post.title}</h2>

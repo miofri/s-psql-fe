@@ -1,6 +1,6 @@
-import styled from 'styled-components';
-import { device } from './breakpoints';
-import { borderRadius } from './Shared.styles';
+import styled from "styled-components";
+import { device } from "./breakpoints";
+import { borderRadius } from "./Shared.styles";
 
 export const Dashboard = styled.div`
 	display: grid;
@@ -13,14 +13,13 @@ export const Dashboard = styled.div`
 		gap: 2vw;
 	}
 `;
-
 export const Sidebar = styled.div`
-	background-color: #272531;
-	min-height: 18vh;
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
+	min-height: 18vh;
+	background-color: #272531;
 	@media ${device.lg} {
 		align-items: flex-start;
 		height: 100vh;
@@ -28,49 +27,31 @@ export const Sidebar = styled.div`
 	}
 `;
 export const SidebarContent = styled.div`
-	width: 70vw;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	width: 70vw;
 	@media ${device.lg} {
 		justify-content: flex-start;
 		width: 12vw;
 		margin-top: 4rem;
 	}
 `;
-export const Blogposts = styled.div`
-	margin-top: 2vh;
-	display: flex;
-	flex-direction: column;
-	gap: 2rem;
-	height: 76vh;
-	overflow-y: scroll;
-	@media ${device.md} {
-		flex-direction: column;
-		height: 94vh;
-	}
-
-	h1 {
-		margin: auto 2vw;
-	}
-`;
-
 export const NavButtonsGroup = styled.nav`
-	font-size: 0.6rem;
-	flex-direction: row;
 	display: flex;
+	flex-direction: row;
+	font-size: 0.6rem;
 	@media ${device.xs} {
 		font-size: 0.8rem;
 	}
 	@media ${device.lg} {
-		width: 100%;
 		flex-direction: column;
 		align-items: flex-start;
+		width: 100%;
 		font-size: 1rem;
 	}
 `;
-
 export const NavButton = styled.button`
 	display: flex;
 	justify-content: center;
@@ -85,17 +66,26 @@ export const NavButton = styled.button`
 		color: #bebbe6;
 	}
 `;
-
+export const Blogposts = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	margin-top: 4vh;
+	height: 76vh;
+	overflow-y: scroll;
+	@media ${device.md} {
+		height: 94vh;
+	}
+`;
 export const Article = styled.article`
 	padding: 4rem;
 	background-color: #272531;
-	margin: auto 2vw;
+	margin: 1vh 2vw;
 	border-radius: ${borderRadius};
 	@media ${device.md} {
 		margin-right: 2vh;
 	}
 `;
-
 export const ArticleDate = styled.p`
 	color: #a7a7a7;
 	font-size: 0.8rem;
