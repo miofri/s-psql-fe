@@ -7,7 +7,7 @@ export const FormContainer = styled.div`
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	min-width: 14vw;
+	min-width: 16vw;
 	max-width: 40vw;
 	padding: 4rem;
 	background-color: #272531;
@@ -42,7 +42,7 @@ export const InputContainer = styled.div<{ $blogpost: boolean }>`
 	gap: 0.4rem;
 `;
 
-export const Input = styled.input<{ $blogpost: boolean }>`
+export const Input = styled.input`
 	max-width: 100%;
 	padding: 0.625rem 1rem;
 	font-size: 0.875rem;
