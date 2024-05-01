@@ -40,14 +40,13 @@ export const SidebarContent = styled.div`
 	}
 `;
 export const Blogposts = styled.div`
-	margin-top: 5vh;
+	margin-top: 2vh;
 	display: flex;
 	flex-direction: column;
 	gap: 2rem;
 	height: 76vh;
 	overflow-y: scroll;
 	@media ${device.md} {
-		margin-top: 2vh;
 		flex-direction: column;
 		height: 94vh;
 	}
@@ -58,9 +57,12 @@ export const Blogposts = styled.div`
 `;
 
 export const NavButtonsGroup = styled.nav`
-	font-size: 0.8rem;
+	font-size: 0.6rem;
 	flex-direction: row;
 	display: flex;
+	@media ${device.xs} {
+		font-size: 0.8rem;
+	}
 	@media ${device.lg} {
 		width: 100%;
 		flex-direction: column;
@@ -74,7 +76,6 @@ export const NavButton = styled.button`
 	justify-content: center;
 	gap: 0.4rem;
 	padding: 0;
-	font-size: 0.8rem;
 	background-color: transparent;
 	transition: color 0.2s;
 	text-align: left;
