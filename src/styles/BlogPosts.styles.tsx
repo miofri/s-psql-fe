@@ -82,6 +82,7 @@ export const Article = styled.article`
 	background-color: #272531;
 	margin: 1vh 2vw;
 	border-radius: ${borderRadius};
+	white-space: pre-line;
 	@media ${device.md} {
 		margin-right: 2vh;
 	}
