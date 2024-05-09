@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-import { usePostBlogMutation } from '../../store/rtk/api';
-import { RootState, persistor } from '../../store/store';
-import * as Interface from '../../interfaces/Blogs.interfaces';
-import { FormWrapper } from '../reusable/FormWrapper';
-import { InputForm } from '../reusable/InputForm';
-import { TextArea } from '../reusable/TextArea';
-import { handleInputChange, handleTextAreaChange } from '../utils';
-import { authSlice } from '../../store/authSlice';
+import { usePostBlogMutation } from "../../store/rtk/api";
+import { RootState, persistor } from "../../store/store";
+import * as Interface from "../../interfaces/Blogs.interfaces";
+import { FormWrapper } from "../reusable/FormWrapper";
+import { InputForm } from "../reusable/InputForm";
+import { TextArea } from "../reusable/TextArea";
+import { handleInputChange, handleTextAreaChange } from "../utils";
+import { authSlice } from "../../store/authSlice";
 
 export const CreateBlog = () => {
 	const navigate = useNavigate();
@@ -17,27 +17,27 @@ export const CreateBlog = () => {
 	const user = useSelector((state: RootState) => state.auth);
 	const [post, { isLoading }] = usePostBlogMutation();
 	const [formState, setFormState] = useState<Interface.PostBlog>({
-		title: 'Title',
-		body: 'Body',
-		user_id: 0,
+		title: "Title",
+		body: "Body",
+		sub: "",
 	});
 
 	useEffect(() => {
-		if (user.token === '') {
-			navigate('/');
+		if (user.token === "") {
+			navigate("/");
 		}
-		setFormState((prev) => ({ ...prev, user_id: user.user.user_id }));
+		setFormState((prev) => ({ ...prev, sub: user.user.sub }));
 	}, [user, navigate]);
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
 			await post(formState).unwrap();
-			navigate('/blog');
+			navigate("/blog");
 		} catch (error) {
 			dispatch(authSlice.actions.clearCredentials());
 			persistor.purge();
-			navigate('/');
+			navigate("/");
 		}
 	};
 	return (

@@ -3,13 +3,13 @@ interface Blog {
 	title: string;
 	body: string;
 	date: string;
-	user_id: number;
+	sub: string;
 	created_at: string;
 }
 interface PostBlog {
 	title: string;
 	body: string;
-	user_id: number;
+	sub: string;
 }
 
 interface PatchBlog {

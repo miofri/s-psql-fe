@@ -7,7 +7,7 @@ interface Credentials {
 	token: string;
 	user: {
 		email: string;
-		user_id: number;
+		sub: string;
 	};
 }
 
