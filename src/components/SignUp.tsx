@@ -10,8 +10,10 @@ export const SignUp = () => {
 	const navigate = useNavigate();
 	const [signup, { isLoading }] = useSignUpMutation();
 	const [formState, setFormState] = React.useState<AuthInterface.Auth>({
-		email: undefined,
-		password: undefined,
+		email: "",
+		password: "",
+		firstName: "",
+		lastName: "",
 	});
 	const [toggleSignupError, setToggleSignupError] = useState<boolean>(false);
 
@@ -39,6 +41,24 @@ export const SignUp = () => {
 			handleSubmit={handleSubmit}
 			isLoading={isLoading}
 		>
+			<InputForm
+				label="First name"
+				name="firstName"
+				type="text"
+				defaultValue=""
+				placeholder="John"
+				bool={false}
+				handleChange={handleChange}
+			/>
+			<InputForm
+				label="Last name"
+				name="lastName"
+				type="text"
+				defaultValue=""
+				placeholder="Doe"
+				bool={false}
+				handleChange={handleChange}
+			/>
 			<InputForm
 				label="Email"
 				name="email"

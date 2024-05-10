@@ -4,7 +4,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { Main } from "./components/Main";
 import { Provider } from "react-redux";
 import { persistor, store } from "./store/store";
-import { BlogPosts } from "./components/blogposts/BlogPosts";
+import { BlogPosts } from "./components/blogposts/Main.BlogPosts";
 import { PatchBlog } from "./components/blogposts/PatchBlog";
 import { CreateBlog } from "./components/blogposts/CreateBlog";
 import { SignUp } from "./components/SignUp";

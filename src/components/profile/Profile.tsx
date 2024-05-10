@@ -15,6 +15,8 @@ export const Profile = () => {
 	const [newPassword, setNewPassword] = useState<AuthInterface.Auth>({
 		email: "",
 		password: "",
+		firstName: "",
+		lastName: "",
 	});
 	const [changeStatus, setChangeStatus] = useState<string>("");
 
@@ -44,6 +46,8 @@ export const Profile = () => {
 			<Styled.SharedStyle.ProfileContainer>
 				<Styled.SharedStyle.CustomH1>Profile</Styled.SharedStyle.CustomH1>
 				<p>Email: {user.user.email}</p>
+				<p>First name: {user.user.firstName}</p>
+				<p>Last name: {user.user.lastName}</p>
 				<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
 					{toggleInput ? "Cancel" : "Change password"}
 				</button>

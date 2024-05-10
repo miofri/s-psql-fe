@@ -48,7 +48,10 @@ export const BlogPosts = () => {
 	if (data) {
 		return (
 			<Styled.BlogpostsStyle.Dashboard>
-				<Sidebar email={user.user.email} handleNewPost={handleNewPost} />
+				<Sidebar
+					firstName={user.user.firstName}
+					handleNewPost={handleNewPost}
+				/>
 				<Styled.BlogpostsStyle.Blogposts>
 					<Styled.SharedStyle.CustomH1>
 						{data.length > 0 ? `Posts` : "Start by creating a post"}

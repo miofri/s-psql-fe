@@ -1,28 +1,28 @@
-import { useDispatch } from 'react-redux';
-import * as Styled from '../../styles/styles';
-import { useNavigate } from 'react-router-dom';
-import { authSlice } from '../../store/authSlice';
-import { persistor } from '../../store/store';
+import { useDispatch } from "react-redux";
+import * as Styled from "../../styles/styles";
+import { useNavigate } from "react-router-dom";
+import { authSlice } from "../../store/authSlice";
+import { persistor } from "../../store/store";
 
 interface SidebarInterface {
-	email: string;
+	firstName: string;
 	handleNewPost: () => void;
 }
 
-export const Sidebar = ({ email, handleNewPost }: SidebarInterface) => {
+export const Sidebar = ({ firstName, handleNewPost }: SidebarInterface) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const handleLogout = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 		e.preventDefault();
 		dispatch(authSlice.actions.clearCredentials());
 		persistor.purge();
-		navigate('/');
+		navigate("/");
 	};
 	return (
 		<Styled.BlogpostsStyle.Sidebar>
 			<Styled.BlogpostsStyle.SidebarContent>
 				<Styled.SharedStyle.CustomH2>
-					Welcome, {email}
+					Welcome, {firstName}
 				</Styled.SharedStyle.CustomH2>
 				<Styled.BlogpostsStyle.NavButtonsGroup role="navigation">
 					<Styled.BlogpostsStyle.NavButton
@@ -34,7 +34,7 @@ export const Sidebar = ({ email, handleNewPost }: SidebarInterface) => {
 					</Styled.BlogpostsStyle.NavButton>
 					<Styled.BlogpostsStyle.NavButton
 						type="button"
-						onClick={() => navigate('/profile')}
+						onClick={() => navigate("/profile")}
 					>
 						<span className="material-symbols-outlined">person</span> Profile
 					</Styled.BlogpostsStyle.NavButton>

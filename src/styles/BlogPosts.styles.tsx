@@ -30,7 +30,7 @@ export const SidebarContent = styled.div`
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 	width: 70vw;
 	@media ${device.lg} {
 		justify-content: flex-start;
@@ -54,16 +54,19 @@ export const NavButtonsGroup = styled.nav`
 `;
 export const NavButton = styled.button`
 	display: flex;
-	justify-content: center;
+	justify-content: flex-start;
 	align-items: center;
-	gap: 0.4rem;
-	padding: 0;
+	padding: 0.6rem 0.6rem 0.6rem 0;
 	background-color: transparent;
-	transition: color 0.2s;
+	width: 100%;
+	transition:
+		color,
+		background-color 0.2s;
 	text-align: left;
 	&:hover {
 		border: 1px solid transparent;
-		color: #bebbe6;
+		color: #272531;
+		background-color: #e6e6e6;
 	}
 `;
 export const Blogposts = styled.div`

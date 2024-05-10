@@ -1,6 +1,8 @@
 interface Auth {
 	email: string | undefined;
 	password: string | undefined;
+	firstName: string | undefined;
+	lastName: string | undefined;
 }
 
 interface Credentials {
@@ -8,6 +10,8 @@ interface Credentials {
 	user: {
 		email: string;
 		sub: string;
+		firstName: string;
+		lastName: string;
 	};
 }
 

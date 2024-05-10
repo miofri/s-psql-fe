@@ -14,8 +14,10 @@ import { handleInputChange } from "./utils";
 export const Main = () => {
 	const [login, { isLoading }] = useGetTokenMutation();
 	const [formState, setFormState] = React.useState<AuthInterface.Auth>({
-		email: undefined,
-		password: undefined,
+		email: "",
+		password: "",
+		firstName: "",
+		lastName: "",
 	});
 	const [toggleLoginError, setToggleLoginError] = useState<boolean>(false);
 	const dispatch = useDispatch();
