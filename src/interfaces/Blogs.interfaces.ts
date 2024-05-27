@@ -9,6 +9,7 @@ interface Blog {
 interface PostBlog {
 	title: string;
 	body: string;
+	tags: string[];
 	sub: string;
 }
 

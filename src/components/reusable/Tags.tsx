@@ -1,9 +1,15 @@
 import React from "react";
 
-export const Tags = ({ tag }: { tag: string }) => {
+interface TagInput {
+	tag: string;
+	handleDeleteTag: (tagToDelete: string) => void;
+}
+
+export const Tags: React.FC<TagInput> = ({ tag, handleDeleteTag }) => {
 	return (
 		<div>
-			<button>x</button> <span>{tag}</span>
+			<button onClick={() => handleDeleteTag(tag)}>x</button>
+			<span>{tag}</span>
 		</div>
 	);
 };

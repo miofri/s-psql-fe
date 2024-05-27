@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { RootState } from "../../store/store";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { useChangePasswordMutation } from "../../store/rtk/api";
-import * as AuthInterface from "../../interfaces/Auth.interfaces";
-import * as Styled from "../../styles/styles";
-import { ChangePasswordForm } from "./ChangePasswordForm";
+import { useEffect, useState } from 'react';
+import { RootState } from '../../store/store';
+import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useChangePasswordMutation } from '../../store/rtk/api';
+import * as AuthInterface from '../../interfaces/Auth.interfaces';
+import * as Styled from '../../styles/styles';
+import { ChangePasswordForm } from './ChangePasswordForm';
 
 export const Profile = () => {
 	const navigate = useNavigate();
@@ -13,16 +13,16 @@ export const Profile = () => {
 	const [changePassword, { isLoading }] = useChangePasswordMutation();
 	const [toggleInput, setToggleInput] = useState<boolean>(false);
 	const [newPassword, setNewPassword] = useState<AuthInterface.Auth>({
-		email: "",
-		password: "",
-		firstName: "",
-		lastName: "",
+		email: '',
+		password: '',
+		firstName: '',
+		lastName: '',
 	});
-	const [changeStatus, setChangeStatus] = useState<string>("");
+	const [changeStatus, setChangeStatus] = useState<string>('');
 
 	useEffect(() => {
-		if (user.token === "") {
-			navigate("/");
+		if (user.token === '') {
+			navigate('/');
 		}
 		setNewPassword((prev) => ({ ...prev, email: user.user.email }));
 	}, [user, navigate]);
@@ -31,9 +31,9 @@ export const Profile = () => {
 		e.preventDefault();
 		try {
 			await changePassword(newPassword);
-			setChangeStatus("Password changed successfully!");
+			setChangeStatus('Password changed successfully!');
 		} catch (error) {
-			setChangeStatus("Soemthing went wrong...");
+			setChangeStatus('Something went wrong...');
 		}
 	};
 	const handleChange = ({
@@ -49,7 +49,7 @@ export const Profile = () => {
 				<p>First name: {user.user.firstName}</p>
 				<p>Last name: {user.user.lastName}</p>
 				<button type="submit" onClick={() => setToggleInput((prev) => !prev)}>
-					{toggleInput ? "Cancel" : "Change password"}
+					{toggleInput ? 'Cancel' : 'Change password'}
 				</button>
 				{toggleInput ? (
 					<ChangePasswordForm
@@ -61,7 +61,7 @@ export const Profile = () => {
 					<></>
 				)}
 				{changeStatus ? <p>{changeStatus}</p> : <></>}
-				<button type="button" onClick={() => navigate("/blog")}>
+				<button type="button" onClick={() => navigate('/blog')}>
 					Back
 				</button>
 			</Styled.SharedStyle.ProfileContainer>

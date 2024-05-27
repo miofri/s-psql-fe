@@ -1,29 +1,29 @@
-import { createApi, fetchBaseQuery, retry } from "@reduxjs/toolkit/query/react";
-import * as AuthInterface from "../../interfaces/Auth.interfaces";
-import { RootState } from "../store";
-import * as BlogInterface from "../../interfaces/Blogs.interfaces";
-import { sort_blogs_by_date_newest } from "./api.utils";
+import { createApi, fetchBaseQuery, retry } from '@reduxjs/toolkit/query/react';
+import * as AuthInterface from '../../interfaces/Auth.interfaces';
+import { RootState } from '../store';
+import * as BlogInterface from '../../interfaces/Blogs.interfaces';
+import { sort_blogs_by_date_newest } from './api.utils';
 
 export const api = createApi({
-	reducerPath: "authApi",
+	reducerPath: 'authApi',
 	baseQuery: retry(
 		fetchBaseQuery({
 			baseUrl: `${import.meta.env.VITE_APP_URL}`,
 			prepareHeaders: (headers, { getState }) => {
 				const token = (getState() as RootState).auth.token;
 				if (token) {
-					headers.set("authorization", `Bearer ${token}`);
+					headers.set('authorization', `Bearer ${token}`);
 				}
 			},
 		}),
 		{ maxRetries: 1 },
 	),
-	tagTypes: ["Blogs"],
+	tagTypes: ['Blogs'],
 	endpoints: (builder) => ({
 		getToken: builder.mutation<AuthInterface.Credentials, AuthInterface.Auth>({
 			query: (body) => ({
 				url: `auth/login`,
-				method: "POST",
+				method: 'POST',
 				body,
 			}),
 		}),
@@ -33,7 +33,7 @@ export const api = createApi({
 				const result = sort_blogs_by_date_newest(response);
 				return result;
 			},
-			providesTags: ["Blogs"],
+			providesTags: ['Blogs'],
 		}),
 		postBlog: builder.mutation<
 			BlogInterface.JSONMessage,
@@ -41,10 +41,10 @@ export const api = createApi({
 		>({
 			query: (body) => ({
 				url: `blogs/post`,
-				method: "POST",
+				method: 'POST',
 				body,
 			}),
-			invalidatesTags: ["Blogs"],
+			invalidatesTags: ['Blogs'],
 		}),
 		deleteBlog: builder.mutation<
 			BlogInterface.JSONMessage,
@@ -52,10 +52,10 @@ export const api = createApi({
 		>({
 			query: (body) => ({
 				url: `blogs/post`,
-				method: "DELETE",
+				method: 'DELETE',
 				body,
 			}),
-			invalidatesTags: ["Blogs"],
+			invalidatesTags: ['Blogs'],
 		}),
 		patchBlog: builder.mutation<
 			BlogInterface.JSONMessage,
@@ -63,15 +63,15 @@ export const api = createApi({
 		>({
 			query: (body) => ({
 				url: `blogs/post`,
-				method: "PATCH",
+				method: 'PATCH',
 				body,
 			}),
-			invalidatesTags: ["Blogs"],
+			invalidatesTags: ['Blogs'],
 		}),
 		signUp: builder.mutation<BlogInterface.JSONMessage, AuthInterface.Auth>({
 			query: (body) => ({
-				url: "users/signup",
-				method: "POST",
+				url: 'users/signup',
+				method: 'POST',
 				body,
 			}),
 		}),
@@ -81,8 +81,8 @@ export const api = createApi({
 			AuthInterface.Auth
 		>({
 			query: (body) => ({
-				url: "users/changepassword",
-				method: "PATCH",
+				url: 'users/changepassword',
+				method: 'PATCH',
 				body,
 			}),
 		}),
