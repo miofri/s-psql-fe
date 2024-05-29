@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Tags } from '../reusable/Tags';
 
-interface TagInputT {
-	tags: string[];
-	setTags: React.Dispatch<React.SetStateAction<string[]>>;
-	tagInput: string;
-	setTagInput: React.Dispatch<React.SetStateAction<string>>;
-}
+// interface TagInputT {
+// 	tags: string[];
+// 	setTags: React.Dispatch<React.SetStateAction<string[]>>;
+// 	tagInput: string;
+// 	setTagInput: React.Dispatch<React.SetStateAction<string>>;
+// }
+// export const TagInput: React.FC<TagInputT> = () => {
 
-export const TagInput: React.FC<TagInputT> = () => {
+export const TagInput = () => {
 	const [tags, setTags] = useState<string[]>([]);
 	const [tagInput, setTagInput] = useState<string>('');
 
@@ -25,10 +26,13 @@ export const TagInput: React.FC<TagInputT> = () => {
 		}
 	};
 
-	const handleDeleteTag = (tagToDelete: string) => {
-		const withoutTagToDelete = tags.filter((tag) => tag !== tagToDelete);
-		setTags(withoutTagToDelete);
-	};
+	const handleDeleteTag = useCallback(
+		(tagToDelete: string) => {
+			const deleteTag = tags.filter((tag) => tag !== tagToDelete);
+			setTags(deleteTag);
+		},
+		[tags],
+	);
 
 	return (
 		<div>
