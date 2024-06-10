@@ -1,18 +1,19 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Tags } from '../reusable/Tags';
 
-// interface TagInputT {
-// 	tags: string[];
-// 	setTags: React.Dispatch<React.SetStateAction<string[]>>;
-// 	tagInput: string;
-// 	setTagInput: React.Dispatch<React.SetStateAction<string>>;
-// }
-// export const TagInput: React.FC<TagInputT> = () => {
+interface TagInputT {
+	tags: string[];
+	setTags: React.Dispatch<React.SetStateAction<string[]>>;
+	tagInput: string;
+	setTagInput: React.Dispatch<React.SetStateAction<string>>;
+}
 
-export const TagInput = () => {
-	const [tags, setTags] = useState<string[]>([]);
-	const [tagInput, setTagInput] = useState<string>('');
-
+export const TagInput: React.FC<TagInputT> = ({
+	tags,
+	setTags,
+	tagInput,
+	setTagInput,
+}) => {
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTagInput(e.target.value);
 	};
@@ -22,7 +23,7 @@ export const TagInput = () => {
 			e.preventDefault();
 			setTags([...tags, tagInput.trim()]);
 			setTagInput('');
-			console.log();
+			console.log(tags);
 		}
 	};
 
@@ -31,7 +32,7 @@ export const TagInput = () => {
 			const deleteTag = tags.filter((tag) => tag !== tagToDelete);
 			setTags(deleteTag);
 		},
-		[tags],
+		[tags, setTags],
 	);
 
 	return (

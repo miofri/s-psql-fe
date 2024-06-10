@@ -13,6 +13,8 @@ import { authSlice } from '../../store/authSlice';
 import { TagInput } from './TagInput';
 
 export const CreateBlog = () => {
+	const [tags, setTags] = useState<string[]>([]);
+	const [tagInput, setTagInput] = useState<string>('');
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector((state: RootState) => state.auth);
@@ -30,6 +32,10 @@ export const CreateBlog = () => {
 		}
 		setFormState((prev) => ({ ...prev, sub: user.user.sub }));
 	}, [user, navigate]);
+
+	useEffect(() => {
+		setFormState((prev) => ({ ...prev, tags }));
+	}, [tags]);
 
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -67,7 +73,12 @@ export const CreateBlog = () => {
 					defaultValue=""
 					handleChange={(e) => handleTextAreaChange(e, setFormState)}
 				/>
-				<TagInput />
+				<TagInput
+					tags={tags}
+					setTags={setTags}
+					tagInput={tagInput}
+					setTagInput={setTagInput}
+				/>
 			</FormWrapper>
 		</>
 	);
