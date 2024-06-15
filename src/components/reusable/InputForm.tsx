@@ -1,5 +1,4 @@
 import React from 'react';
-import * as Styled from '../../styles/styles';
 
 interface Input {
 	label: string;
@@ -18,15 +17,15 @@ export const InputForm = ({
 	type,
 	defaultValue,
 	placeholder,
-	bool,
 	handleChange,
 }: Input) => {
 	return (
-		<Styled.SharedStyle.InputContainer $blogpost={bool}>
-			<Styled.SharedStyle.Label htmlFor={name}>
+		<div className="max-w-96 flex flex-col gap-2">
+			<label className="block text-sm font-medium text-white" htmlFor={name}>
 				{label}
-			</Styled.SharedStyle.Label>
-			<Styled.SharedStyle.Input
+			</label>
+			<input
+				className="py-2.5 px-4"
 				required
 				type={type}
 				name={name}
@@ -35,6 +34,6 @@ export const InputForm = ({
 				placeholder={placeholder}
 				onChange={handleChange}
 			/>
-		</Styled.SharedStyle.InputContainer>
+		</div>
 	);
 };

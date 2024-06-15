@@ -1,23 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
-import { useGetTokenMutation } from "../store/rtk/api";
-import { setCredentials } from "../store/authSlice";
-import * as AuthInterface from "../interfaces/Auth.interfaces";
-import * as Styled from "../styles/styles";
-import { InputForm } from "./reusable/InputForm";
-import { handleInputChange } from "./utils";
-//import { useDispatch } from 'react-redux';
-//import { useNavigate } from 'react-router-dom';
+import { useGetTokenMutation } from '../store/rtk/api';
+import { setCredentials } from '../store/authSlice';
+import * as AuthInterface from '../interfaces/Auth.interfaces';
+import { InputForm } from './reusable/InputForm';
+import { handleInputChange } from './utils';
 
 export const Main = () => {
 	const [login, { isLoading }] = useGetTokenMutation();
 	const [formState, setFormState] = React.useState<AuthInterface.Auth>({
-		email: "",
-		password: "",
-		firstName: "",
-		lastName: "",
+		email: '',
+		password: '',
+		firstName: '',
+		lastName: '',
 	});
 	const [toggleLoginError, setToggleLoginError] = useState<boolean>(false);
 	const dispatch = useDispatch();
@@ -31,7 +28,7 @@ export const Main = () => {
 			const user = await login(formState).unwrap();
 			dispatch(setCredentials(user));
 			setToggleLoginError(false);
-			navigate("/blog");
+			navigate('/blog');
 			// eslint-disable-next-line @typescript-eslint/no-explicit-any
 		} catch (error: any) {
 			setToggleLoginError(true);
@@ -39,9 +36,9 @@ export const Main = () => {
 	};
 
 	return (
-		<Styled.SharedStyle.FormContainer>
-			<Styled.SharedStyle.CustomH1>Login</Styled.SharedStyle.CustomH1>
-			<Styled.SharedStyle.Form onSubmit={(e) => handleSubmit(e)}>
+		<div className="flex flex-col justify-center items-center w-96 p-7 bg-primary bg-opacity-30 rounded-md">
+			<h1 className="text-3xl break-words ">Login</h1>
+			<form className="flex flex-col gap-4" onSubmit={(e) => handleSubmit(e)}>
 				<InputForm
 					label="Email"
 					name="email"
@@ -61,30 +58,28 @@ export const Main = () => {
 					handleChange={(e) => handleInputChange(e, setFormState)}
 				/>
 				{toggleLoginError ? (
-					<Styled.SharedStyle.ErrorText>
-						Login credentials are incorrect
-					</Styled.SharedStyle.ErrorText>
+					<p className="text-red-800 mb-0">Login credentials are incorrect</p>
 				) : (
 					<></>
 				)}
-				<Styled.SharedStyle.ButtonGroup>
-					<Styled.SharedStyle.LoginButton
-						$nobg={false}
+				<div className="flex flex-col justify-center m-4 gap-4">
+					<button
+						className="btn btn-primary"
 						type="submit"
 						disabled={isLoading}
 					>
 						{isLoading ? `Logging in...` : `Log in`}
-					</Styled.SharedStyle.LoginButton>
-					<Styled.SharedStyle.LoginButton
-						$nobg
+					</button>
+					<button
+						className="btn btn-link"
 						type="button"
-						onClick={() => navigate("/signup")}
+						onClick={() => navigate('/signup')}
 					>
 						No account yet? <br />
 						Sign up
-					</Styled.SharedStyle.LoginButton>
-				</Styled.SharedStyle.ButtonGroup>
-			</Styled.SharedStyle.Form>
-		</Styled.SharedStyle.FormContainer>
+					</button>
+				</div>
+			</form>
+		</div>
 	);
 };
