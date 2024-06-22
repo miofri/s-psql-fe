@@ -25,7 +25,10 @@ export const Main = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
+			console.log('in handlesubmit');
 			const user = await login(formState).unwrap();
+			console.log('user', user);
+
 			dispatch(setCredentials(user));
 			setToggleLoginError(false);
 			navigate('/blog');
@@ -37,7 +40,7 @@ export const Main = () => {
 
 	return (
 		<div className="flex flex-col justify-center items-center w-96 p-7 bg-primary bg-opacity-30 rounded-md">
-			<h1 className="text-3xl break-words ">Login</h1>
+			<h1 className="text-5xl break-words my-4">Login</h1>
 			<form className="flex flex-col gap-4" onSubmit={(e) => handleSubmit(e)}>
 				<InputForm
 					label="Email"

@@ -4,8 +4,6 @@ import { useEffect } from 'react';
 
 import { RootState } from '../../store/store';
 import { useDeleteBlogMutation, useGetBlogsQuery } from '../../store/rtk/api';
-import * as Styled from '../../styles/styles';
-import { Sidebar } from './Sidebar';
 
 export const BlogPosts = () => {
 	const navigate = useNavigate();
@@ -36,10 +34,6 @@ export const BlogPosts = () => {
 		deletePost({ post_id: post_id });
 	};
 
-	const handleNewPost = () => {
-		navigate('/newpost');
-	};
-
 	const convertDate = (date: string) => {
 		const newDate = new Date(parseInt(date)).toString().split(' ');
 		const finalDate = newDate.slice(0, 5).join(' ');
@@ -48,38 +42,43 @@ export const BlogPosts = () => {
 
 	if (data) {
 		return (
-			<Styled.BlogpostsStyle.Dashboard>
-				<Sidebar
-					firstName={user.user.firstName}
-					handleNewPost={handleNewPost}
-				/>
-				<Styled.BlogpostsStyle.Blogposts>
-					<Styled.SharedStyle.CustomH1>
-						{data.length > 0 ? `Posts` : 'Start by creating a post'}
-					</Styled.SharedStyle.CustomH1>
+			<div className="flex flex-col gap-4 mt-4 ">
+				<h1 className="mt-0 mb-4 mx-4 text-5xl text-wrap">
+					{data.length > 0 ? `Posts` : 'Start by creating a post'}
+				</h1>
+				<div className="flex flex-col gap-4 max-h-[88vh] overflow-scroll">
 					{data?.map((post) => (
-						<Styled.BlogpostsStyle.Article key={post.id}>
-							<h2>{post.title}</h2>
-							<p>{post.body}</p>
-							<Styled.BlogpostsStyle.ArticleDate>
+						<article
+							className="flex flex-col gap-2 p-8 rounded-md whitespace-pre-line bg-primary/20"
+							key={post.id}
+						>
+							<h2 className="font-bold text-2xl text-white mb-6">
+								{post.title}
+							</h2>
+							<p className="text-white">{post.body}</p>
+							<p className="text-white/65">
 								Posted on {convertDate(post.created_at)}
-							</Styled.BlogpostsStyle.ArticleDate>
-							<button
-								type="button"
-								onClick={(e) => handleUpdateClick(e, post.id)}
-							>
-								Update
-							</button>
-							<button
-								type="submit"
-								onClick={(e) => handleDeleteClick(e, post.id)}
-							>
-								Delete
-							</button>
-						</Styled.BlogpostsStyle.Article>
+							</p>
+							<div className="flex flex-row">
+								<button
+									type="button"
+									onClick={(e) => handleUpdateClick(e, post.id)}
+									className="btn btn-primary text-white "
+								>
+									Update
+								</button>
+								<button
+									type="submit"
+									onClick={(e) => handleDeleteClick(e, post.id)}
+									className="btn btn-primary text-white bg-opacity-40 border-none hover:bg-accent/40"
+								>
+									Delete
+								</button>
+							</div>
+						</article>
 					))}
-				</Styled.BlogpostsStyle.Blogposts>
-			</Styled.BlogpostsStyle.Dashboard>
+				</div>
+			</div>
 		);
 	}
 	return <></>;

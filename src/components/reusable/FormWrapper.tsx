@@ -22,8 +22,8 @@ export const FormWrapper = ({
 	const navigate = useNavigate();
 
 	return (
-		<Styled.SharedStyle.FormContainer>
-			<Styled.SharedStyle.CustomH1>{formTitle}</Styled.SharedStyle.CustomH1>
+		<div className="flex flex-col justify-center items-center min-w-[16vw] max-w-[40vw] p-8 bg-primary/30">
+			<h1 className="mt-0 mb-4 mx-4 text-5xl text-wrap">{formTitle}</h1>
 			<Styled.SharedStyle.Form onSubmit={(e) => handleSubmit(e)}>
 				{children}
 				<Styled.SharedStyle.ButtonGroup>
@@ -35,6 +35,6 @@ export const FormWrapper = ({
 					</button>
 				</Styled.SharedStyle.ButtonGroup>
 			</Styled.SharedStyle.Form>
-		</Styled.SharedStyle.FormContainer>
+		</div>
 	);
 };

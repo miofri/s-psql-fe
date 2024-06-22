@@ -15,13 +15,15 @@ export const ChangePasswordForm = ({
 	isLoading,
 }: ChangePwInterface) => {
 	return (
-		<Styled.SharedStyle.ChangePasswordForm
+		<form
+			className="flex flex-col gap-2"
 			onSubmit={(e) => handleSubmitPassword(e)}
 		>
-			<Styled.SharedStyle.Label htmlFor="changePassword">
+			<label className="text-lg p-4 rounded-md" htmlFor="changePassword">
 				Change Password
-			</Styled.SharedStyle.Label>
-			<Styled.SharedStyle.Input
+			</label>
+			<input
+				className="max-w-max px-4 py-2 text-white"
 				name="changePassword"
 				type="password"
 				id="changePassword"
@@ -30,6 +32,6 @@ export const ChangePasswordForm = ({
 			<button type="submit" disabled={isLoading}>
 				Submit
 			</button>
-		</Styled.SharedStyle.ChangePasswordForm>
+		</form>
 	);
 };
