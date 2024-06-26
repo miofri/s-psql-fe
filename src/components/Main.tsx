@@ -7,6 +7,7 @@ import { setCredentials } from '../store/authSlice';
 import * as AuthInterface from '../interfaces/Auth.interfaces';
 import { InputForm } from './reusable/InputForm';
 import { handleInputChange } from './utils';
+import { Logo } from '../assets/test';
 
 export const Main = () => {
 	const [login, { isLoading }] = useGetTokenMutation();
@@ -39,50 +40,56 @@ export const Main = () => {
 	};
 
 	return (
-		<div className="flex flex-col justify-center items-center w-96 p-7 bg-primary bg-opacity-30 rounded-md">
-			<h1 className="text-5xl break-words my-4">Login</h1>
-			<form className="flex flex-col gap-4" onSubmit={(e) => handleSubmit(e)}>
-				<InputForm
-					label="Email"
-					name="email"
-					type="text"
-					placeholder="firstname.lastname@mail.com"
-					bool={false}
-					defaultValue={formState?.email}
-					handleChange={(e) => handleInputChange(e, setFormState)}
-				/>
-				<InputForm
-					label="Password"
-					name="password"
-					type="password"
-					placeholder="Enter password"
-					bool={false}
-					defaultValue={formState?.password}
-					handleChange={(e) => handleInputChange(e, setFormState)}
-				/>
-				{toggleLoginError ? (
-					<p className="text-red-800 mb-0">Login credentials are incorrect</p>
-				) : (
-					<></>
-				)}
-				<div className="flex flex-col justify-center m-4 gap-4">
-					<button
-						className="btn btn-primary"
-						type="submit"
-						disabled={isLoading}
-					>
-						{isLoading ? `Logging in...` : `Log in`}
-					</button>
-					<button
-						className="btn btn-link"
-						type="button"
-						onClick={() => navigate('/signup')}
-					>
-						No account yet? <br />
-						Sign up
-					</button>
-				</div>
-			</form>
+		<div className="flex flex-row w-[80vw] justify-center sm:justify-evenly items-center flex-wrap">
+			<div
+				className="max-w-[489px] min-w-[320px]
+				max-h-[266px] flex-1 m-4"
+			>
+				<Logo />
+			</div>
+			<div className="flex flex-col justify-center items-center max-w-96 p-7 md:pb-7 bg-primary bg-opacity-30 rounded-md">
+				<h1 className="text-5xl break-words my-4">Login</h1>
+				<form className="flex flex-col gap-4" onSubmit={(e) => handleSubmit(e)}>
+					<InputForm
+						label="Email"
+						name="email"
+						type="text"
+						placeholder="firstname.lastname@mail.com"
+						defaultValue={formState?.email}
+						handleChange={(e) => handleInputChange(e, setFormState)}
+					/>
+					<InputForm
+						label="Password"
+						name="password"
+						type="password"
+						placeholder="Enter password"
+						defaultValue={formState?.password}
+						handleChange={(e) => handleInputChange(e, setFormState)}
+					/>
+					{toggleLoginError ? (
+						<p className="text-red-800 mb-0">Login credentials are incorrect</p>
+					) : (
+						<></>
+					)}
+					<div className="flex flex-col justify-center items-center sm:gap-1">
+						<button
+							className="btn btn-primary min-w-full p-0 m-0"
+							type="submit"
+							disabled={isLoading}
+						>
+							{isLoading ? `Logging in...` : `Log in`}
+						</button>
+						<button
+							className="btn btn-link text-white/80 hover:text-accent/80"
+							type="button"
+							onClick={() => navigate('/signup')}
+						>
+							No account yet? <br />
+							Sign up
+						</button>
+					</div>
+				</form>
+			</div>
 		</div>
 	);
 };

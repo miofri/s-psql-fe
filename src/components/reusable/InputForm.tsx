@@ -6,7 +6,6 @@ interface Input {
 	type: string;
 	defaultValue: string | undefined;
 	placeholder: string | undefined;
-	bool: boolean;
 	handleChange: ({
 		target: { name, value },
 	}: React.ChangeEvent<HTMLInputElement>) => void;
@@ -20,12 +19,12 @@ export const InputForm = ({
 	handleChange,
 }: Input) => {
 	return (
-		<div className="min-w-72 flex flex-col gap-2">
+		<div className="min-w-64 flex flex-col gap-2">
 			<label className="block text-sm font-medium text-white" htmlFor={name}>
 				{label}
 			</label>
 			<input
-				className="input py-2.5 px-4"
+				className="input py-2.5 px-4 bg-[#2f3e6a]"
 				required
 				type={type}
 				name={name}

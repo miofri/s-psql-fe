@@ -1,12 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { RootState } from '../../store/store';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { useChangePasswordMutation } from '../../store/rtk/api';
 import * as AuthInterface from '../../interfaces/Auth.interfaces';
-import * as Styled from '../../styles/styles';
 import { ChangePasswordForm } from './ChangePasswordForm';
-import { CustomH1 } from '../reusable/elements/CustomH1';
+import { ProfileAvatarBox } from './children/ProfileAvatarBox';
 
 export const Profile = () => {
 	const navigate = useNavigate();
@@ -20,12 +19,18 @@ export const Profile = () => {
 		lastName: '',
 	});
 	const [changeStatus, setChangeStatus] = useState<string>('');
+	const modalRef = useRef<HTMLDialogElement>(null);
 
 	useEffect(() => {
 		if (user.token === '') {
 			navigate('/');
 		}
-		setNewPassword((prev) => ({ ...prev, email: user.user.email }));
+		setNewPassword((prev) => ({
+			...prev,
+			email: user.user.email,
+			firstName: user.user.firstName,
+			lastName: user.user.lastName,
+		}));
 	}, [user, navigate]);
 
 	const handleSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -33,6 +38,12 @@ export const Profile = () => {
 		try {
 			await changePassword(newPassword);
 			setChangeStatus('Password changed successfully!');
+			const timer = setTimeout(() => {
+				setChangeStatus('');
+			}, 10000);
+			setNewPassword((prev) => ({ ...prev, password: '' }));
+			modalRef.current?.close();
+			return () => clearTimeout(timer);
 		} catch (error) {
 			setChangeStatus('Something went wrong...');
 		}
@@ -40,42 +51,15 @@ export const Profile = () => {
 	const handleChange = ({
 		target: { value },
 	}: React.ChangeEvent<HTMLInputElement>) => {
+		console.log(value);
+
 		setNewPassword((prev) => ({ ...prev, password: value }));
 	};
 	return (
 		<div className="flex flex-col items-start p-4 gap-4">
-			<CustomH1>Profile</CustomH1>
+			<h1 className="text-5xl text-wrap">Profile</h1>
 			<div className="flex flex-row bg-primary/20 rounded-lg overflow-hidden">
-				<div className="flex flex-col items-center min-w-72 p-8 bg-gradient-to-tr from-indigo-950 to-accent/40 gap-3">
-					<div className="avatar">
-						<div className="rounded-full w-36">
-							<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-						</div>
-					</div>
-					<h2 className="text-2xl">
-						{user.user.firstName} {user.user.lastName}
-					</h2>
-					<div className="flex flex-row min-w-full">
-						<div className="flex flex-col flex-1 items-center">
-							<h3 className="text-accent/60 text font-semibold text-sm">
-								Posts
-							</h3>
-							<p>100</p>
-						</div>
-						<div className="flex flex-col flex-1 items-center">
-							<h3 className="text-accent/60 text font-semibold text-sm">
-								Followers
-							</h3>
-							<p>14</p>
-						</div>
-						<div className="flex flex-col flex-1 items-center">
-							<h3 className="text-accent/60 text font-semibold text-sm">
-								Following
-							</h3>
-							<p>20</p>
-						</div>
-					</div>
-				</div>
+				<ProfileAvatarBox user={user} />
 				<div className="flex flex-col min-w-80 p-12 gap-6 justify-center">
 					<div className="flex flex-col gap-2">
 						<label className="block text-lg font-medium" htmlFor="email">
@@ -95,20 +79,25 @@ export const Profile = () => {
 						<button
 							className="btn btn-primary text-white m-0"
 							type="submit"
-							onClick={() => setToggleInput((prev) => !prev)}
+							onClick={() => modalRef.current?.showModal()}
 						>
-							{toggleInput ? 'Cancel' : 'Change password'}
+							Update password
 						</button>
-						{toggleInput ? (
-							<ChangePasswordForm
-								handleSubmitPassword={handleSubmitPassword}
-								handleChange={handleChange}
-								isLoading={isLoading}
-							/>
-						) : (
-							<></>
-						)}
-						{changeStatus ? <p>{changeStatus}</p> : <></>}
+						<dialog id="changepw_modal" className="modal" ref={modalRef}>
+							<div className="modal-box bg-[#152048] w-72">
+								<form method="dialog">
+									<button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">
+										✕
+									</button>
+								</form>
+								<ChangePasswordForm
+									handleSubmitPassword={handleSubmitPassword}
+									handleChange={handleChange}
+									isLoading={isLoading}
+									newPw={newPassword.password}
+								/>
+							</div>
+						</dialog>
 						<button
 							className="btn bg-primary bg-opacity-40 border-none hover:bg-accent/40 m-0"
 							type="button"
@@ -117,6 +106,7 @@ export const Profile = () => {
 							Back
 						</button>
 					</div>
+					<p>{changeStatus}</p>
 				</div>
 			</div>
 		</div>

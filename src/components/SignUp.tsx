@@ -1,19 +1,19 @@
-import React, { useState } from "react";
-import { FormWrapper } from "./reusable/FormWrapper";
-import { InputForm } from "./reusable/InputForm";
-import * as AuthInterface from "../interfaces/Auth.interfaces";
-import { useSignUpMutation } from "../store/rtk/api";
-import { useNavigate } from "react-router-dom";
-import * as Styled from "../styles/styles";
+import React, { useState } from 'react';
+import { FormWrapper } from './reusable/FormWrapper';
+import { InputForm } from './reusable/InputForm';
+import * as AuthInterface from '../interfaces/Auth.interfaces';
+import { useSignUpMutation } from '../store/rtk/api';
+import { useNavigate } from 'react-router-dom';
+import * as Styled from '../styles/styles';
 
 export const SignUp = () => {
 	const navigate = useNavigate();
 	const [signup, { isLoading }] = useSignUpMutation();
 	const [formState, setFormState] = React.useState<AuthInterface.Auth>({
-		email: "",
-		password: "",
-		firstName: "",
-		lastName: "",
+		email: '',
+		password: '',
+		firstName: '',
+		lastName: '',
 	});
 	const [toggleSignupError, setToggleSignupError] = useState<boolean>(false);
 
@@ -27,7 +27,7 @@ export const SignUp = () => {
 		try {
 			await signup(formState).unwrap();
 			setToggleSignupError(false);
-			navigate("/");
+			navigate('/');
 		} catch (error) {
 			setToggleSignupError(true);
 		}
@@ -47,7 +47,6 @@ export const SignUp = () => {
 				type="text"
 				defaultValue=""
 				placeholder="John"
-				bool={false}
 				handleChange={handleChange}
 			/>
 			<InputForm
@@ -56,7 +55,6 @@ export const SignUp = () => {
 				type="text"
 				defaultValue=""
 				placeholder="Doe"
-				bool={false}
 				handleChange={handleChange}
 			/>
 			<InputForm
@@ -64,7 +62,6 @@ export const SignUp = () => {
 				name="email"
 				type="text"
 				defaultValue=""
-				bool={false}
 				placeholder="firstname.lastname@mail.com"
 				handleChange={handleChange}
 			/>
@@ -74,13 +71,10 @@ export const SignUp = () => {
 				type="password"
 				defaultValue=""
 				placeholder="******"
-				bool={false}
 				handleChange={handleChange}
 			/>
 			{toggleSignupError ? (
-				<Styled.SharedStyle.ErrorText>
-					Account exists!
-				</Styled.SharedStyle.ErrorText>
+				<p className="text-red-800 mb-0">Account exists!</p>
 			) : (
 				<></>
 			)}
