@@ -5,7 +5,14 @@ interface Blog {
 	date: string;
 	sub: string;
 	created_at: string;
+	tags: Tag[];
 }
+
+interface Tag {
+	tag_id: number;
+	tag_name: string;
+}
+
 interface PostBlog {
 	title: string;
 	body: string;
