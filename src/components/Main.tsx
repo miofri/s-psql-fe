@@ -37,7 +37,7 @@ export const Main = () => {
 	};
 
 	return (
-		<div className="h-screen flex justify-center items-center p-4">
+		<div className="h-screen flex justify-center items-center">
 			<div className="flex flex-row w-screen justify-center sm:justify-evenly items-center  flex-wrap h-fit">
 				<div
 					className="max-w-[489px] min-w-[270px]
