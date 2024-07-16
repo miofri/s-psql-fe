@@ -1,5 +1,4 @@
 import React from 'react';
-import * as Styled from '../../styles/styles';
 
 interface Input {
 	label: string;
@@ -7,7 +6,6 @@ interface Input {
 	type: string;
 	defaultValue: string | undefined;
 	placeholder: string | undefined;
-	bool: boolean;
 	handleChange: ({
 		target: { name, value },
 	}: React.ChangeEvent<HTMLInputElement>) => void;
@@ -18,15 +16,18 @@ export const InputForm = ({
 	type,
 	defaultValue,
 	placeholder,
-	bool,
 	handleChange,
 }: Input) => {
 	return (
-		<Styled.SharedStyle.InputContainer $blogpost={bool}>
-			<Styled.SharedStyle.Label htmlFor={name}>
+		<div className="w-full flex flex-col gap-2">
+			<label
+				className="block text-xs md:text-sm font-medium text-white"
+				htmlFor={name}
+			>
 				{label}
-			</Styled.SharedStyle.Label>
-			<Styled.SharedStyle.Input
+			</label>
+			<input
+				className="input py-2 px-4 bg-[#2f3e6a] text-xs sm:text-sm"
 				required
 				type={type}
 				name={name}
@@ -35,6 +36,6 @@ export const InputForm = ({
 				placeholder={placeholder}
 				onChange={handleChange}
 			/>
-		</Styled.SharedStyle.InputContainer>
+		</div>
 	);
 };
