@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { Tags } from '../reusable/Tags';
 
 interface TagInputT {
@@ -14,6 +14,8 @@ export const TagInput: React.FC<TagInputT> = ({
 	tagInput,
 	setTagInput,
 }) => {
+	useEffect(() => {}, [tags]);
+
 	const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setTagInput(e.target.value);
 	};
@@ -21,9 +23,12 @@ export const TagInput: React.FC<TagInputT> = ({
 	const handleInputKeydown = (e: React.KeyboardEvent<HTMLInputElement>) => {
 		if (e.key === 'Enter' && tagInput.trim() !== '') {
 			e.preventDefault();
-			setTags([...tags, tagInput.trim()]);
-			setTagInput('');
-			console.log(tags);
+			const checkDuplicate = tags.includes(tagInput.trim());
+			if (!checkDuplicate) {
+				setTags((prevTags) => [...prevTags, tagInput.trim()]);
+				setTagInput('');
+				console.log(tags);
+			}
 		}
 	};
 
@@ -36,14 +41,23 @@ export const TagInput: React.FC<TagInputT> = ({
 	);
 
 	return (
-		<div>
-			<div>
+		<div className="flex flex-col gap-2">
+			<div className="flex flex-row gap-2 flex-wrap">
 				{tags.map((tag) => (
 					<Tags key={`${tag}`} tag={tag} handleDeleteTag={handleDeleteTag} />
 				))}
 			</div>
+			<label
+				className="block text-sm font-medium text-white"
+				htmlFor="tagsinput"
+			>
+				Input tags:
+			</label>
 			<input
+				className="input bg-[#2f3e6a]"
+				id="tagsinput"
 				type="text"
+				value={tagInput}
 				onChange={(e) => handleOnChange(e)}
 				onKeyDown={(e) => handleInputKeydown(e)}
 			/>

@@ -49,7 +49,7 @@ export const CreateBlog = () => {
 		}
 	};
 	return (
-		<>
+		<div className="min-h-screen flex justify-center items-center w-screen">
 			<FormWrapper
 				formTitle="New Post"
 				isLoading={isLoading}
@@ -58,7 +58,6 @@ export const CreateBlog = () => {
 				handleSubmit={handleSubmit}
 			>
 				<InputForm
-					bool={true}
 					label="Title"
 					name="title"
 					type="text"
@@ -80,6 +79,6 @@ export const CreateBlog = () => {
 					setTagInput={setTagInput}
 				/>
 			</FormWrapper>
-		</>
+		</div>
 	);
 };

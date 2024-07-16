@@ -26,10 +26,7 @@ export const Main = () => {
 	const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		try {
-			console.log('in handlesubmit');
 			const user = await login(formState).unwrap();
-			console.log('user', user);
-
 			dispatch(setCredentials(user));
 			setToggleLoginError(false);
 			navigate('/blog');
@@ -40,55 +37,62 @@ export const Main = () => {
 	};
 
 	return (
-		<div className="flex flex-row w-[80vw] justify-center sm:justify-evenly items-center flex-wrap">
-			<div
-				className="max-w-[489px] min-w-[320px]
+		<div className="h-screen flex justify-center items-center p-4">
+			<div className="flex flex-row w-screen justify-center sm:justify-evenly items-center  flex-wrap h-fit">
+				<div
+					className="max-w-[489px] min-w-[270px]
 				max-h-[266px] flex-1 m-4"
-			>
-				<Logo />
-			</div>
-			<div className="flex flex-col justify-center items-center max-w-96 p-7 md:pb-7 bg-primary bg-opacity-30 rounded-md">
-				<h1 className="text-5xl break-words my-4">Login</h1>
-				<form className="flex flex-col gap-4" onSubmit={(e) => handleSubmit(e)}>
-					<InputForm
-						label="Email"
-						name="email"
-						type="text"
-						placeholder="firstname.lastname@mail.com"
-						defaultValue={formState?.email}
-						handleChange={(e) => handleInputChange(e, setFormState)}
-					/>
-					<InputForm
-						label="Password"
-						name="password"
-						type="password"
-						placeholder="Enter password"
-						defaultValue={formState?.password}
-						handleChange={(e) => handleInputChange(e, setFormState)}
-					/>
-					{toggleLoginError ? (
-						<p className="text-red-800 mb-0">Login credentials are incorrect</p>
-					) : (
-						<></>
-					)}
-					<div className="flex flex-col justify-center items-center sm:gap-1">
-						<button
-							className="btn btn-primary min-w-full p-0 m-0"
-							type="submit"
-							disabled={isLoading}
-						>
-							{isLoading ? `Logging in...` : `Log in`}
-						</button>
-						<button
-							className="btn btn-link text-white/80 hover:text-accent/80"
-							type="button"
-							onClick={() => navigate('/signup')}
-						>
-							No account yet? <br />
-							Sign up
-						</button>
-					</div>
-				</form>
+				>
+					<Logo />
+				</div>
+				<div className="flex flex-col justify-center items-center min-w-72 p-7 md:pb-7 bg-primary bg-opacity-30 rounded-md">
+					<h1 className="text-5xl break-words my-4">Login</h1>
+					<form
+						className="flex flex-col gap-4"
+						onSubmit={(e) => handleSubmit(e)}
+					>
+						<InputForm
+							label="Email"
+							name="email"
+							type="text"
+							placeholder="firstname.lastname@mail.com"
+							defaultValue={formState?.email}
+							handleChange={(e) => handleInputChange(e, setFormState)}
+						/>
+						<InputForm
+							label="Password"
+							name="password"
+							type="password"
+							placeholder="Enter password"
+							defaultValue={formState?.password}
+							handleChange={(e) => handleInputChange(e, setFormState)}
+						/>
+						{toggleLoginError ? (
+							<p className="text-red-800 mb-0">
+								Login credentials are incorrect
+							</p>
+						) : (
+							<></>
+						)}
+						<div className="flex flex-col justify-center items-center sm:gap-1">
+							<button
+								className="btn btn-primary min-w-full p-0 m-0"
+								type="submit"
+								disabled={isLoading}
+							>
+								{isLoading ? `Logging in...` : `Log in`}
+							</button>
+							<button
+								className="btn btn-link text-white/80 hover:text-accent/80 text-xs"
+								type="button"
+								onClick={() => navigate('/signup')}
+							>
+								No account yet? <br />
+								Sign up
+							</button>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	);

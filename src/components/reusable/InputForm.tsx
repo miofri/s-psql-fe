@@ -19,12 +19,15 @@ export const InputForm = ({
 	handleChange,
 }: Input) => {
 	return (
-		<div className="min-w-64 flex flex-col gap-2">
-			<label className="block text-sm font-medium text-white" htmlFor={name}>
+		<div className="w-full flex flex-col gap-2">
+			<label
+				className="block text-xs md:text-sm font-medium text-white"
+				htmlFor={name}
+			>
 				{label}
 			</label>
 			<input
-				className="input py-2.5 px-4 bg-[#2f3e6a]"
+				className="input py-2 px-4 bg-[#2f3e6a] text-xs sm:text-sm"
 				required
 				type={type}
 				name={name}

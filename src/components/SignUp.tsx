@@ -4,7 +4,6 @@ import { InputForm } from './reusable/InputForm';
 import * as AuthInterface from '../interfaces/Auth.interfaces';
 import { useSignUpMutation } from '../store/rtk/api';
 import { useNavigate } from 'react-router-dom';
-import * as Styled from '../styles/styles';
 
 export const SignUp = () => {
 	const navigate = useNavigate();

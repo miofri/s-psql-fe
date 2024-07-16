@@ -15,7 +15,7 @@ export const BlogPosts = () => {
 		if (user.token === '' || isError) {
 			navigate('/');
 		}
-		console.log(user);
+		console.log(data);
 	}, [user, navigate, data, isError]);
 
 	const handleUpdateClick = (
@@ -42,11 +42,21 @@ export const BlogPosts = () => {
 
 	if (data) {
 		return (
-			<div className="flex flex-col gap-4 mt-4 ">
-				<h1 className="mt-0 mb-4 mx-4 text-5xl text-wrap">
-					{data.length > 0 ? `Posts` : 'Start by creating a post'}
-				</h1>
-				<div className="flex flex-col gap-4 max-h-[88vh] overflow-scroll">
+			<div className="flex flex-col gap-4 mt-12 box-content max-w-full">
+				<div className="flex flex-row justify-between items-center">
+					<h1 className="mb-4 text-5xl text-wrap ">
+						{data.length > 0 ? `Posts` : 'Start by creating a post'}
+					</h1>
+					<div>
+						<label
+							htmlFor="my-drawer"
+							className="btn h-14 drawer-button  border-none bg-accent/70 hover:bg-accent/80 rounded-xl "
+						>
+							<span className="material-symbols-outlined white ">menu</span>
+						</label>
+					</div>
+				</div>
+				<div className="flex flex-col gap-4 max-h-[80vh] max-w-[80vw] overflow-scroll">
 					{data?.map((post) => (
 						<article
 							className="flex flex-col gap-2 p-8 rounded-md whitespace-pre-line bg-primary/20"
@@ -55,7 +65,7 @@ export const BlogPosts = () => {
 							<h2 className="font-bold text-2xl text-white mb-6">
 								{post.title}
 							</h2>
-							<p className="text-white">{post.body}</p>
+							<p className="text-white break-words">{post.body}</p>
 							<p className="text-white/65">
 								Posted on {convertDate(post.created_at)}
 							</p>

@@ -18,17 +18,18 @@ export const TextArea = ({
 	handleChange,
 }: TextArea) => {
 	return (
-		<Styled.SharedStyle.InputContainer $blogpost>
-			<Styled.SharedStyle.Label htmlFor={name}>
+		<div className="flex flex-col gap-2">
+			<label className="block text-sm font-medium text-white" htmlFor={name}>
 				{label}
-			</Styled.SharedStyle.Label>
-			<Styled.SharedStyle.TextArea
+			</label>
+			<textarea
+				className="textarea textarea-bordered text-white bg-[#2f3e6a] w-full"
 				name={name}
 				id={name}
 				defaultValue={defaultValue}
 				placeholder={placeholder}
 				onChange={handleChange}
 			/>
-		</Styled.SharedStyle.InputContainer>
+		</div>
 	);
 };

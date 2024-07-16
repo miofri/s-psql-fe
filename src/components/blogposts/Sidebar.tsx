@@ -17,7 +17,7 @@ export const Sidebar = ({ handleNewPost }: SidebarInterface) => {
 		navigate('/');
 	};
 	return (
-		<nav className="w-fit h-screen p-4 bg-accent/10 text-left">
+		<nav className="w-fit h-screen p-4 bg-sidebar text-left">
 			<ul className="menu rounded-md h-fit">
 				<li>
 					<button className="btn justify-start text-accent hover:text-accent hover:bg-primary/30 border-none ">
