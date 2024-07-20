@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect } from 'react';
-import { Tags } from '../reusable/Tags';
+import { InputTags } from '../reusable/Tags';
 
 interface TagInputT {
 	tags: string[];
@@ -44,7 +44,11 @@ export const TagInput: React.FC<TagInputT> = ({
 		<div className="flex flex-col gap-2">
 			<div className="flex flex-row gap-2 flex-wrap">
 				{tags.map((tag) => (
-					<Tags key={`${tag}`} tag={tag} handleDeleteTag={handleDeleteTag} />
+					<InputTags
+						key={`${tag}`}
+						tag={tag}
+						handleDeleteTag={handleDeleteTag}
+					/>
 				))}
 			</div>
 			<label

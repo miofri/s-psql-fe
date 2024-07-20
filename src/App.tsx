@@ -10,7 +10,7 @@ import { CreateBlog } from './components/blogposts/CreateBlog';
 import { SignUp } from './components/SignUp';
 import { Profile } from './components/profile/Profile';
 import { PersistGate } from 'redux-persist/integration/react';
-import { Upload_test } from './components/profile/Upload_test';
+import { UploadAvatar } from './components/profile/UploadAvatar';
 
 const router = createBrowserRouter([
 	{
@@ -39,7 +39,7 @@ const router = createBrowserRouter([
 	},
 	{
 		path: '/test',
-		element: <Upload_test />,
+		element: <UploadAvatar />,
 	},
 ]);
 

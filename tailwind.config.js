@@ -5,9 +5,11 @@ export default {
 		extend: {
 			colors: {
 				sidebar: '#33043b',
+				background: '#00051a',
 			},
 		},
 	},
+	// eslint-disable-next-line no-undef
 	plugins: [require('daisyui')],
 	daisyui: {
 		themes: [

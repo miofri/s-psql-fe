@@ -59,14 +59,21 @@ export const BlogPosts = () => {
 				<div className="flex flex-col gap-4 max-h-[80vh] max-w-[80vw] overflow-scroll">
 					{data?.map((post) => (
 						<article
-							className="flex flex-col gap-2 p-8 rounded-md whitespace-pre-line bg-primary/20"
+							className="flex flex-col gap-2 py-10 px-14 rounded-md whitespace-pre-line bg-primary/20"
 							key={post.id}
 						>
 							<h2 className="font-bold text-2xl text-white mb-6">
 								{post.title}
 							</h2>
 							<p className="text-white break-words">{post.body}</p>
-							<p className="text-white/65">
+							<div className="flex flex-row flex-wrap gap-2 w-full mt-5">
+								{post.tags.map((tag) => (
+									<div className="flex flex-row justify-center items-center gap-1 h-fit w-fit text-xs">
+										#{tag.tag_name}
+									</div>
+								))}
+							</div>
+							<p className="text-white/65 text-xs">
 								Posted on {convertDate(post.created_at)}
 							</p>
 							<div className="flex flex-row">
