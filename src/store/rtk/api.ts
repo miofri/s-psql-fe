@@ -48,7 +48,7 @@ export const api = createApi({
 		}),
 		deleteBlog: builder.mutation<
 			BlogInterface.JSONMessage,
-			{ post_id: number }
+			{ post_id: string }
 		>({
 			query: (body) => ({
 				url: `blogs/post`,

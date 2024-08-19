@@ -7,6 +7,7 @@ import * as AuthInterface from '../../interfaces/Auth.interfaces';
 import { ChangePasswordForm } from './ChangePasswordForm';
 import { ProfileAvatarBox } from './children/ProfileAvatarBox';
 import { Drawer } from '../reusable/Drawer';
+import { getSupabaseClient } from '../supabaseclient';
 
 export const Profile = () => {
 	const navigate = useNavigate();
@@ -20,6 +21,8 @@ export const Profile = () => {
 	});
 	const [changeStatus, setChangeStatus] = useState<string>('');
 	const modalRef = useRef<HTMLDialogElement>(null);
+	const [userAvatar, setUserAvatar] = useState<string>('');
+	const supabase = getSupabaseClient(user.token);
 
 	useEffect(() => {
 		if (user.token === '') {
@@ -31,7 +34,15 @@ export const Profile = () => {
 			firstName: user.user.firstName,
 			lastName: user.user.lastName,
 		}));
-	}, [user, navigate]);
+		const fetchAvatar = async () => {
+			const { data } = await supabase.storage
+				.from('blog-imgs/avatars')
+				.getPublicUrl(`${user.user.sub}`);
+			if (data) setUserAvatar(data.publicUrl);
+			console.log(data.publicUrl);
+		};
+		fetchAvatar();
+	}, [user, navigate, userAvatar, supabase]);
 
 	const handleSubmitPassword = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
@@ -70,7 +81,7 @@ export const Profile = () => {
 					</div>
 				</div>
 				<div className="flex flex-col sm:flex-row bg-primary/20 rounded-lg overflow-hidden">
-					<ProfileAvatarBox user={user} />
+					<ProfileAvatarBox user={user} avatar={userAvatar} />
 					<div className="flex flex-col min-w-80 p-12 gap-6 justify-center">
 						<div className="flex flex-col gap-2">
 							<label className="block text-lg font-medium" htmlFor="email">

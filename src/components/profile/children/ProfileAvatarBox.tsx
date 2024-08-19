@@ -5,17 +5,19 @@ import { UploadAvatar } from '../UploadAvatar';
 
 interface ProfileAvatarBox {
 	user: Credentials & PersistPartial;
+	avatar: string;
 }
 
 export const ProfileAvatarBox: React.FC<ProfileAvatarBox> = ({
 	user,
+	avatar,
 }: ProfileAvatarBox) => {
 	const changeAvatarRef = useRef<HTMLDialogElement>(null);
 	return (
 		<div className="flex flex-col items-center min-w-72 p-8 bg-gradient-to-tr from-indigo-950 to-accent/40 gap-3">
 			<div className="avatar">
 				<div className="rounded-full w-36">
-					<img src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+					<img src={avatar} />
 				</div>
 			</div>
 			<div>

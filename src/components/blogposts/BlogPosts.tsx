@@ -20,7 +20,7 @@ export const BlogPosts = () => {
 
 	const handleUpdateClick = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-		post_id: number,
+		post_id: string,
 	) => {
 		e.preventDefault();
 		navigate(`/editpost/${post_id}`);
@@ -28,7 +28,7 @@ export const BlogPosts = () => {
 
 	const handleDeleteClick = (
 		e: React.MouseEvent<HTMLButtonElement, MouseEvent>,
-		post_id: number,
+		post_id: string,
 	) => {
 		e.preventDefault();
 		deletePost({ post_id: post_id });

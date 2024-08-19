@@ -1,5 +1,5 @@
 interface Blog {
-	id: number;
+	id: string;
 	title: string;
 	body: string;
 	date: string;
@@ -23,7 +23,7 @@ interface PostBlog {
 interface PatchBlog {
 	title: string;
 	body: string;
-	post_id: number;
+	post_id: string;
 }
 
 interface JSONMessage {
